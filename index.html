@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Dr. Moe Medical Esthetics in Windsor, Ontario. Professional facials and skin treatments for men and women. Book on WhatsApp.">
+<link rel="icon" href="photos/logo.jpg">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Dr. Moe Medical Esthetics | Windsor, Ontario</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@400;500;600&display=swap">
+<style>
+/* Layout: quiet monochrome clinic, wide margins, one soft "skin glow" gradient as the signature visual */
+:root{
+  --bg:#1c1c1f; --surface:#232327; --blush:#2a2a2f; --ink:#f7f4ee; --muted:#b8b2a8; --line:#3a3a40;
+  --glow-a:#4a3f2c; --glow-b:#5c4a26; --accent:#e2c27a; --gold:#d4ad5a; --pink:#e9d29b; --on-ink:#1c1c1f;
+  --gold-grad:linear-gradient(120deg,#9c6d22 0%,#e7c97f 38%,#b8862f 62%,#f3dd9f 100%); color-scheme:dark;
+  --display:"Bodoni Moda", "Didot", Georgia, serif;
+  --body:"Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --wrap:1160px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px, env(safe-area-inset-left,0px));padding-right:max(20px, env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border:1px solid var(--ink);background:var(--ink);color:var(--on-ink);text-decoration:none;font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;cursor:pointer;font-family:var(--body);transition:background .2s,color .2s}
+.btn:hover{background:transparent;color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--on-ink)}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:16px}
+.logo{text-decoration:none;display:flex;align-items:center;gap:12px;line-height:1}
+.logo img{width:46px;height:46px;border-radius:50%;object-fit:cover}
+.logo .lt{display:flex;flex-direction:column}
+.ba.real img{object-position:center 40%}
+.logo b{font-family:var(--display);font-weight:500;font-size:26px;letter-spacing:.02em}
+.logo span{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.links{display:flex;gap:28px;font-size:14px}
+.links a{text-decoration:none;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+.nav .btn{padding:11px 20px;font-size:12px}
+@media (max-width:860px){.links{display:none}}
+
+/* hero */
+.hero{padding-block:72px 88px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(42px,6.4vw,84px);letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p.lede{font-size:18px;color:var(--muted);max-width:34em;margin:26px 0 34px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px}
+.trust{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:40px;font-size:13px;color:var(--muted)}
+.trust span::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:9px;vertical-align:middle}
+.glow{position:relative;aspect-ratio:4/5;max-width:100%;border-radius:220px 220px 6px 6px;overflow:hidden;background:
+  radial-gradient(60% 50% at 35% 35%, var(--glow-a), transparent 70%),
+  radial-gradient(55% 55% at 70% 70%, var(--glow-b), transparent 70%),
+  var(--surface)}
+/* hero animation: real photo, a gold "skin scan" sweeps across and turns tired skin into fresh skin */
+.glow .sk{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.glow .tired{filter:saturate(.5) brightness(.8) contrast(.9) sepia(.3)}
+.glow .freshwrap{position:absolute;inset:0;animation:reveal 9s ease-in-out infinite}
+.glow .fresh{filter:brightness(1.08) saturate(1.15) contrast(1.03)}
+.glow .flush{position:absolute;inset:0;background:radial-gradient(40% 30% at 38% 52%,rgba(240,120,145,.45),transparent 70%),radial-gradient(60% 50% at 30% 30%,rgba(255,236,220,.35),transparent 70%);mix-blend-mode:soft-light}
+.glow .beam{position:absolute;top:0;bottom:0;left:0;width:3px;margin-left:-1.5px;background:linear-gradient(#f3dd9f,#c99a45,#f3dd9f);box-shadow:0 0 18px 6px rgba(233,201,127,.65),0 0 60px 20px rgba(233,201,127,.25);opacity:0;animation:beam 9s ease-in-out infinite}
+.glow .dot{position:absolute;width:14px;height:14px;border-radius:50%;border:2px solid #f3dd9f;box-shadow:0 0 0 0 rgba(243,221,159,.7);opacity:0;animation:dot 9s ease-in-out infinite}
+.glow .dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:#f3dd9f}
+.glow .d1{left:30%;top:40%;animation-delay:.3s}.glow .d2{left:58%;top:50%;animation-delay:.9s}.glow .d3{left:40%;top:63%;animation-delay:1.5s}
+.glow .chip{position:absolute;right:18px;font-size:12px;font-weight:600;letter-spacing:.04em;padding:8px 14px 8px 30px;color:#1c1416;background:rgba(255,250,246,.88);backdrop-filter:blur(6px);border:1px solid rgba(201,154,69,.6);border-radius:999px;animation:chip 9s ease-in-out infinite}
+.glow .chip::before{content:"";position:absolute;left:12px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--gold-grad)}
+.glow .c1{top:22%}.glow .c2{top:33%;animation-delay:.25s}.glow .c3{top:44%;animation-delay:.5s}
+.glow .state{position:absolute;top:22px;left:50%;transform:translateX(-50%);display:grid;font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.glow .state b{grid-area:1/1;padding:7px 16px;font-weight:700;text-align:center}
+.glow .s1{background:rgba(28,20,22,.75);color:#fff;opacity:0;animation:s1 9s infinite}
+.glow .s2{background:var(--gold-grad);color:#1c1416;animation:s2 9s infinite}
+.glow .tag{position:absolute;left:22px;bottom:22px;right:22px;background:var(--bg);padding:16px 18px;display:flex;justify-content:space-between;gap:12px;font-size:13px;border:1px solid var(--line)}
+@keyframes reveal{0%,14%{clip-path:inset(0 100% 0 0);opacity:1}54%,88%{clip-path:inset(0 0 0 0);opacity:1}100%{clip-path:inset(0 0 0 0);opacity:0}}
+@keyframes beam{0%,13%{left:0;opacity:0}16%{left:2%;opacity:1}52%{left:100%;opacity:1}56%,100%{left:100%;opacity:0}}
+@keyframes dot{0%,16%{opacity:0;transform:scale(.4)}22%{opacity:1;transform:scale(1);box-shadow:0 0 0 0 rgba(243,221,159,.7)}36%{box-shadow:0 0 0 14px rgba(243,221,159,0)}48%{opacity:1}56%,100%{opacity:0}}
+@keyframes chip{0%,56%{opacity:0;transform:translateX(12px)}62%,86%{opacity:1;transform:none}92%,100%{opacity:0;transform:none}}
+@keyframes s1{0%,48%{opacity:1}52%,94%{opacity:0}100%{opacity:1}}
+@keyframes s2{0%,48%{opacity:0}52%,92%{opacity:1}97%,100%{opacity:0}}
+.glow .tag b{font-family:var(--display);font-weight:500;font-size:18px;display:block}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.glow{aspect-ratio:1/1;border-radius:180px 180px 6px 6px}.hero{padding-block:44px 64px}}
+
+/* promise band */
+.band{background:var(--ink);color:var(--on-ink)}
+.band .wrap{padding-block:56px;display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:start}
+.band h2{font-size:clamp(28px,3.4vw,40px)}
+.band p{margin:0;opacity:.82;font-size:17px}
+.band .no{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.band h2{color:var(--gold)}
+.band{border-top:3px solid var(--gold)}
+.band .no span{border:1px solid var(--gold);color:var(--gold);padding:6px 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+@media (max-width:760px){.band .wrap{grid-template-columns:1fr}}
+
+/* services */
+section.block{padding-block:96px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.head h2{font-size:clamp(34px,4.4vw,56px);margin-top:12px}
+.head p{max-width:30em;color:var(--muted);margin:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.filters button{font-family:var(--body);font-size:13px;padding:8px 16px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;border-radius:999px}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--on-ink)}
+.menu{border-top:1px solid var(--ink)}
+.item{display:grid;grid-template-columns:minmax(0,300px) 1fr auto;gap:32px;padding-block:28px;border-bottom:1px solid var(--line);align-items:center}
+.item .txt{min-width:0}
+.item h3{font-size:28px}
+.item .cat{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:8px 0 12px;font-weight:600}
+.item p{margin:0;color:var(--muted);min-width:0;max-width:44ch}
+.item .fix{font-size:13px;color:var(--pink);margin-top:10px;font-weight:600}
+.item .meta{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;align-self:start;padding-top:6px}
+.item .meta b{font-family:var(--display);font-size:24px;font-weight:500;display:block}
+.item .meta small{color:var(--muted);font-size:13px}
+@media (max-width:860px){.item{grid-template-columns:1fr;gap:16px}.item .meta{text-align:left;display:flex;gap:14px;align-items:baseline;padding-top:0}}
+
+/* before / after slider */
+.ba{position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;border:1px solid var(--line);--p:50%;touch-action:pan-y;background:#e4b8a2}
+.pic{position:relative;aspect-ratio:4/3;max-width:100%;overflow:hidden;border:1px solid var(--line);outline:1px solid rgba(201,154,69,.55);outline-offset:-10px}
+.pic img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
+.item:hover .pic img{transform:scale(1.05)}
+.ba canvas,.ba img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover}
+.ba .a{clip-path:inset(0 0 0 var(--p))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.15);pointer-events:none}
+.ba .handle::after{content:"‹ ›";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:#fff;color:#1a1517;display:grid;place-items:center;font-size:15px;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.ba .lb,.ba .la{position:absolute;top:10px;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;padding:4px 8px;background:rgba(26,21,23,.72);color:#fff;pointer-events:none}
+.ba .lb{left:10px}.ba .la{right:10px;background:rgba(168,130,58,.92)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:3px}
+
+/* process */
+.process{background:var(--surface)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s}
+.step{border-top:1px solid var(--ink);padding-top:22px}
+.step::before{counter-increment:s;content:"Step " counter(s);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);font-weight:700}
+.step{border-top-color:var(--gold)}
+.logo b{color:var(--ink)}
+.logo span{color:var(--accent)}
+.eyebrow{color:var(--accent)}
+.menu{border-top-color:var(--gold)}
+blockquote{border-color:var(--line)}
+.sig{color:var(--accent)}
+.step h3{font-size:24px;margin:12px 0 10px}
+.step p{margin:0;color:var(--muted);font-size:15px}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* about */
+.story-intro{text-align:center;max-width:760px;margin:0 auto 72px}
+.story-intro h2{font-size:clamp(32px,4.2vw,52px);margin:14px 0 20px}
+.story-intro p{color:var(--muted);margin:0 auto;max-width:58ch;font-size:17px}
+.member{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:center;padding-block:48px;border-top:1px solid var(--line)}
+.member.flip > :first-child{order:2}
+.member > div{min-width:0}
+.portrait{aspect-ratio:4/5;max-width:100%;background:linear-gradient(160deg,var(--glow-b),var(--surface) 55%,var(--glow-a));display:grid;place-content:center;justify-items:center;gap:10px;border:1px solid var(--line);outline:1px solid var(--gold);outline-offset:-14px}
+.portrait.photo{display:block;position:relative;overflow:hidden}
+.portrait.photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block}
+.portrait.soft{background:linear-gradient(200deg,var(--glow-a),var(--surface) 60%,var(--glow-b))}
+.portrait span{font-family:var(--display);font-style:italic;font-size:clamp(36px,5vw,60px);color:var(--ink);opacity:.85;text-align:center}
+.portrait small{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.role{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--pink);font-weight:700}
+.name{font-size:clamp(30px,3.6vw,44px);text-transform:uppercase;letter-spacing:.04em;margin:10px 0 18px}
+.creds{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-wrap:wrap;gap:8px}
+.creds li{border:1px solid var(--gold);color:var(--accent);padding:6px 14px;font-size:13px;font-weight:600}
+.about p{color:var(--muted);max-width:60ch}
+.training{margin:26px 0 0;display:grid;gap:0;border-top:1px solid var(--line)}
+.training div{display:grid;grid-template-columns:140px 1fr;gap:16px;padding-block:12px;border-bottom:1px solid var(--line)}
+.training dt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:700;padding-top:3px}
+.training dd{margin:0;font-size:15px;min-width:0}
+@media (max-width:520px){.training div{grid-template-columns:1fr;gap:4px}}
+.member-cta{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:26px}
+.ig{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid var(--gold)}
+@media (max-width:860px){.member{grid-template-columns:1fr;gap:32px}.member.flip > :first-child{order:0}.portrait{aspect-ratio:4/3}.story-intro{text-align:left;margin-bottom:40px}}
+
+/* reviews */
+.quotes{display:grid;gap:24px}
+.quotes .featured{background:linear-gradient(135deg,var(--blush),var(--bg) 70%)}
+.quotes .featured p{font-size:clamp(19px,2vw,24px);max-width:60ch}
+.rv-grid{columns:3 280px;column-gap:24px}
+.rv-grid blockquote{break-inside:avoid;margin-bottom:24px;padding:22px;gap:12px}
+.rv-head{display:flex;align-items:center;gap:12px}
+.rv-head > div:not(.stars){display:grid;min-width:0;flex:1}
+.rv-head b{font-weight:600;font-size:15px;color:var(--ink)}
+.rv-head small{font-size:12px;color:var(--muted)}
+.rv-head .stars{font-size:14px;letter-spacing:.08em;white-space:nowrap}
+.stars .off{color:var(--line)}
+.av{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:14px;color:#1c1416;background:var(--gold-grad)}
+.rv-grid blockquote:nth-child(3n+2) .av{background:linear-gradient(135deg,#f3c6d0,#cf6f86);color:#fff}
+.rv-grid blockquote:nth-child(3n) .av{background:#1c1416;color:#f3dd9f}
+blockquote p{font-family:var(--body);font-size:16px;line-height:1.6;color:var(--ink)}
+.rating{display:grid;justify-items:end;gap:2px}
+.rating b{font-family:var(--display);font-size:48px;font-weight:500;line-height:1}
+.rating small{color:var(--muted);font-size:13px}
+@media (max-width:760px){.rating{justify-items:start}}
+.stars{color:var(--gold);letter-spacing:.2em;font-size:18px}
+blockquote{margin:0;padding:28px;border:1px solid var(--line);background:var(--bg);display:flex;flex-direction:column;gap:18px}
+blockquote p{margin:0}
+blockquote footer{font-size:13px;color:var(--muted)}
+.note{font-size:12px;color:var(--muted);margin-top:18px}
+@media (max-width:860px){.quotes{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:820px}
+details{border-bottom:1px solid var(--line);padding-block:20px}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-size:18px;font-weight:500}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--display);font-size:26px;line-height:1;color:var(--accent)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin:12px 0 0;max-width:62ch}
+
+/* booking */
+.book{background:var(--ink);color:var(--on-ink)}
+.book .wrap{padding-block:96px;display:grid;grid-template-columns:1fr 1.1fr;gap:64px}
+.book h2{font-size:clamp(36px,4.6vw,58px);margin:12px 0 20px}
+.book .eyebrow,.book .muted{color:color-mix(in srgb,var(--on-ink) 70%,transparent)}
+.info{display:grid;gap:22px;margin-top:34px;font-size:15px}
+.info b{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.65;font-weight:600;margin-bottom:4px}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:2px 22px;font-variant-numeric:tabular-nums}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
+form .full{grid-column:1/-1}
+label{display:grid;gap:6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+input,select,textarea{font:inherit;font-size:15px;letter-spacing:0;text-transform:none;padding:13px 14px;background:transparent;color:var(--on-ink);border:1px solid color-mix(in srgb,var(--on-ink) 35%,transparent);border-radius:0;width:100%}
+select option{color:#141414}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--on-ink)}
+.book{border-top:3px solid var(--gold)}
+.book h2{color:var(--gold)}
+.book .btn{background:var(--gold);color:#1a1517;border-color:var(--gold);justify-self:start}
+.book .btn:hover{background:transparent;color:var(--gold)}
+.info a{color:var(--gold);text-decoration:none;user-select:all}
+.info .by{color:var(--pink);font-size:14px;margin-top:6px}
+#thanks{grid-column:1/-1;padding:16px;border:1px solid color-mix(in srgb,var(--on-ink) 35%,transparent);font-size:15px}
+@media (max-width:860px){.book .wrap{grid-template-columns:1fr;gap:40px;padding-block:72px}}
+@media (max-width:520px){form{grid-template-columns:1fr}}
+
+.site-foot .wrap{padding-block:36px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:13px;color:var(--muted)}
+
+/* ---- brand polish: metallic gold + rose ---- */
+.gold-text,.logo b,.hero h1 em,.band h2,.book h2,.rating b{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo b{font-size:30px;font-style:italic;font-weight:500;letter-spacing:.01em;line-height:1}
+.logo .lt > span{color:var(--pink);font-size:10px;letter-spacing:.34em;margin-top:6px;font-weight:600}
+.logo img{width:50px;height:50px;box-shadow:0 0 0 2px var(--bg),0 0 0 3px var(--gold)}
+.btn{background:var(--gold-grad);background-size:160% 100%;background-position:0 0;color:#1c1416;border:0;box-shadow:0 6px 18px -8px rgba(163,118,42,.7);transition:background-position .5s,box-shadow .3s,transform .2s}
+.btn:hover{background:var(--gold-grad);background-size:160% 100%;background-position:100% 0;color:#1c1416;transform:translateY(-1px);box-shadow:0 10px 24px -8px rgba(163,118,42,.8)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink);box-shadow:none}
+.btn.ghost:hover{background:var(--ink);color:var(--on-ink)}
+.book .btn,.book .btn:hover{color:#1c1416}
+.hero{background:radial-gradient(50% 60% at 85% 30%,var(--blush),transparent 70%)}
+.eyebrow{color:var(--pink)}
+.process{background:linear-gradient(180deg,var(--surface),var(--blush))}
+.band,.book{border-top:0;box-shadow:inset 0 3px 0 0 #c99a45}
+.trust span::before{background:var(--gold-grad)}
+.filters button[aria-pressed="true"]{background:var(--gold-grad);border-color:transparent;color:#1c1416}
+.glow{box-shadow:0 30px 60px -30px rgba(163,118,42,.45)}
+
+/* ---- tap-to-compare cards + viewer ---- */
+button.pic{padding:0;cursor:zoom-in;font:inherit;color:inherit;background:var(--surface);display:block;width:100%}
+.pic img{animation:drift 14s ease-in-out infinite alternate}
+.item:nth-child(2n) .pic img{animation-delay:-7s}
+@keyframes drift{from{transform:scale(1.04) translate(-1.5%,-1%)}to{transform:scale(1.1) translate(1.5%,1%)}}
+.item:hover .pic img{transform:none}
+.pic .tap{position:absolute;left:14px;bottom:14px;display:flex;align-items:center;gap:8px;padding:8px 14px 8px 10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#1c1416;background:rgba(255,250,246,.9);backdrop-filter:blur(6px);border:1px solid rgba(201,154,69,.6);border-radius:999px;transition:transform .3s,background .3s}
+.pic .tap i{width:18px;height:18px;border-radius:50%;background:var(--gold-grad);position:relative}
+.pic .tap i::before,.pic .tap i::after{content:"";position:absolute;top:50%;width:0;height:0;margin-top:-3px;border:3px solid transparent}
+.pic .tap i::before{left:2px;border-right-color:#1c1416}.pic .tap i::after{right:2px;border-left-color:#1c1416}
+.pic:hover .tap,.pic:focus-visible .tap{transform:translateY(-3px);background:#fff}
+.pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(28,20,22,.35));pointer-events:none}
+.pic .tap{z-index:1}
+
+dialog#viewer{width:min(1040px,calc(100vw - 32px));max-height:calc(100vh - 32px);padding:0;border:0;background:var(--bg);color:var(--ink);box-shadow:0 40px 120px -20px rgba(0,0,0,.6);overflow:auto}
+dialog#viewer::backdrop{background:rgba(20,14,16,.78);backdrop-filter:blur(6px)}
+dialog#viewer[open]{animation:pop .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:none}}
+.v-grid{display:grid;grid-template-columns:1.5fr 1fr}
+.v-stage{position:relative;aspect-ratio:4/3;overflow:hidden;background:#000;--p:100%;touch-action:pan-y}
+.v-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.v-stage.zoom img{animation:kb 9s ease-out forwards}
+@keyframes kb{from{transform:scale(1.12)}to{transform:scale(1.02)}}
+.v-stage #vAfter{clip-path:inset(0 0 0 var(--p))}
+.v-stage.illus #vBefore{filter:saturate(.5) brightness(.8) contrast(.9) sepia(.3)}
+.v-stage.illus #vAfter{filter:brightness(1.08) saturate(1.15) contrast(1.03)}
+.v-stage .vline{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:linear-gradient(#f3dd9f,#c99a45,#f3dd9f);box-shadow:0 0 16px 4px rgba(233,201,127,.6);pointer-events:none}
+.v-stage .vline::after{content:"";position:absolute;top:50%;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--gold-grad);box-shadow:0 4px 16px rgba(0,0,0,.35),0 0 0 4px rgba(255,255,255,.35)}
+.v-stage .vlab{position:absolute;top:16px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;padding:6px 12px;pointer-events:none}
+.v-stage .vb{left:16px;background:rgba(28,20,22,.75);color:#fff}
+.v-stage .va{right:16px;background:var(--gold-grad);color:#1c1416}
+.v-stage input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.v-stage:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:-4px}
+.v-side{padding:36px 32px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.v-badge{align-self:start;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--pink)}
+.v-side h3{font-size:clamp(28px,3vw,38px)}
+.v-side .vfix{color:var(--accent);font-weight:600;font-size:14px}
+.v-side .vmeta{font-family:var(--display);font-size:22px}
+.v-side .vnote{font-size:12px;color:var(--muted);margin:0}
+.v-side .vhint{font-size:13px;color:var(--muted);margin:0}
+.v-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:auto;padding-top:10px}
+.v-close{position:absolute;top:12px;right:12px;z-index:2;width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,250,246,.92);color:#1c1416;font-size:22px;line-height:1;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+@media (max-width:760px){.v-grid{grid-template-columns:1fr}.v-side{padding:22px 20px}}
+
+/* ---- charcoal + sparkle, white & gold only ---- */
+html{background:#1c1c1f}
+body{background:radial-gradient(120% 70% at 50% 0%,#2b2b30 0%,#1c1c1f 55%,#161618 100%) fixed;color:var(--ink)}
+#sparkle{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+header,main,footer{position:relative;z-index:1}
+header{background:rgba(28,28,31,.82)}
+body::before{background:#1c1c1f}
+.hero{background:radial-gradient(45% 55% at 85% 30%,rgba(212,173,90,.14),transparent 70%)}
+.process{background:rgba(255,255,255,.025)}
+.quotes .featured{background:linear-gradient(135deg,rgba(212,173,90,.12),rgba(255,255,255,.02) 70%)}
+blockquote{background:rgba(255,255,255,.03);border-color:var(--line)}
+.rv-grid blockquote:nth-child(3n+2) .av{background:#f7f4ee;color:#1c1c1f}
+.rv-grid blockquote:nth-child(3n) .av{background:#111113;color:#e7c97f;box-shadow:inset 0 0 0 1px #d4ad5a}
+.filters button{border-color:var(--line);color:var(--muted)}
+/* white bands with gold */
+.band,.book{background:#f7f4ee;color:#1c1c1f}
+.band h2,.book h2{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:#9c6d22}
+.band .no span{border-color:#b8862f;color:#8a5f1c}
+.book .eyebrow,.book .muted,.book label,.info b{color:#5c5650}
+.info a{color:#8a5f1c}
+.info .by{color:#8a5f1c}
+.book input,.book select,.book textarea{color:#1c1c1f;border-color:rgba(28,28,31,.3);background:#fff}
+.book input:focus,.book select:focus,.book textarea:focus{border-color:#9c6d22}
+#thanks{border-color:rgba(28,28,31,.3)}
+.book .btn.ghost{color:#1c1c1f;border-color:#1c1c1f}
+/* hero + viewer: keep color, no grey */
+.glow .tired{filter:saturate(.85) brightness(.84) contrast(.94)}
+.glow .flush{background:radial-gradient(40% 30% at 38% 52%,rgba(255,200,140,.35),transparent 70%),radial-gradient(60% 50% at 30% 30%,rgba(255,240,215,.35),transparent 70%)}
+.glow .s1{background:rgba(20,20,22,.8)}
+.v-stage.illus #vBefore{filter:saturate(.88) brightness(.86) contrast(.95)}
+.v-stage.illus #vAfter{filter:brightness(1.08) saturate(1.12) contrast(1.03)}
+dialog#viewer{background:#1f1f23}
+
+/* ---- final polish ---- */
+header{position:sticky!important;top:env(safe-area-inset-top,0px);z-index:20!important}
+.btn{white-space:nowrap;justify-content:center}
+.nav-right{display:flex;align-items:center;gap:10px}
+.menu-btn{display:none;width:44px;height:44px;border:1px solid var(--line);background:transparent;border-radius:50%;cursor:pointer;flex-direction:column;justify-content:center;align-items:center;gap:5px;padding:0}
+.menu-btn i{display:block;width:18px;height:1.5px;background:var(--ink);transition:transform .3s,opacity .3s}
+header.open .menu-btn i:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+header.open .menu-btn i:nth-child(2){opacity:0}
+header.open .menu-btn i:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+@media (max-width:860px){
+  .menu-btn{display:flex}
+  .nav{position:relative}
+  header .links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;background:rgba(24,24,27,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:8px max(20px,env(safe-area-inset-left,0px)) 16px}
+  header.open .links{display:flex}
+  header .links a{padding:14px 0;border-bottom:1px solid var(--line);font-size:16px;color:var(--ink)}
+  header .links a:last-child{border-bottom:0}
+}
+@media (max-width:520px){
+  .logo{gap:9px}
+  .logo img{width:40px;height:40px}
+  .logo b{font-size:23px}
+  .logo .lt > span{font-size:8px;letter-spacing:.26em;margin-top:4px}
+  .nav .btn{padding:10px 14px;font-size:11px;letter-spacing:.12em}
+  .nav{padding-block:12px}
+  .hero .ctas .btn{flex:1 1 100%}
+  .trust{display:grid;grid-template-columns:1fr;gap:10px}
+  .hero .eyebrow{font-size:11px;letter-spacing:.16em}
+  section.block{padding-block:72px}
+}
+.demo-note{margin:0;padding:12px 16px;border:1px dashed rgba(212,173,90,.55);color:var(--muted);font-size:13px;background:rgba(212,173,90,.06)}
+.demo-note b{color:var(--accent);font-weight:700}
+.req{color:#9c6d22;font-weight:700}
+.form-hint{margin:0;font-size:13px;color:#5c5650}
+.book input::placeholder,.book textarea::placeholder{color:#9a948c}
+#thanks{color:#1c1c1f;background:#fff}
+#thanks.ok{border-color:#b8862f;background:#fbf6ea}
+.site-foot{border-top:1px solid var(--line);background:rgba(0,0,0,.25)}
+.site-foot .foot-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:28px;padding-block:44px 28px;align-items:start}
+.foot-brand{display:flex;align-items:center;gap:12px}
+.foot-brand img{width:44px;height:44px;border-radius:50%;box-shadow:0 0 0 1px var(--gold)}
+.foot-brand b{display:block;font-family:var(--display);font-style:italic;font-size:24px;font-weight:500;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot-brand span{font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent)}
+.foot-links,.foot-contact,.foot-hours{display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.foot-links a,.foot-contact a{text-decoration:none;color:var(--muted)}
+.foot-links a:hover,.foot-contact a:hover{color:var(--accent)}
+.site-foot .foot-base{display:block;padding-block:18px 28px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+@media (max-width:860px){.site-foot .foot-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.site-foot .foot-grid{grid-template-columns:1fr}}
+section{scroll-margin-top:84px}
+@media (max-width:860px){header .links{background:#18181b}}
+@media (max-width:520px){.quotes .featured p{font-size:17px}.book .btn{justify-self:stretch}}
+
+/* contact us */
+.contact .c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.c-card{position:relative;display:flex;flex-direction:column;gap:6px;padding:26px 24px;border:1px solid var(--line);background:rgba(255,255,255,.035);text-decoration:none;color:var(--ink);transition:border-color .3s,transform .3s}
+.c-card:hover{border-color:rgba(212,173,90,.6)}
+.c-card b{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.c-card p{margin:0;color:var(--muted);font-size:14px}
+.c-card .c-big{font-family:var(--display);font-size:22px;color:var(--ink);line-height:1.3;margin-bottom:4px}
+.c-card a{color:inherit;text-decoration:none}
+.c-card .c-big a{color:var(--ink)}
+.c-card p a:hover{color:var(--accent)}
+.c-ic{font-size:20px;line-height:1;margin-bottom:8px;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(212,173,90,.5);background:rgba(212,173,90,.08);color:var(--accent)}
+.c-loc{border-color:rgba(212,173,90,.55);background:linear-gradient(135deg,rgba(212,173,90,.14),rgba(255,255,255,.02) 70%)}
+.c-cta{justify-content:center;background:var(--gold-grad);border:0;color:#1c1416}
+.c-cta b{color:#3a2a10}
+.c-cta .c-big{color:#1c1416}
+.c-cta:hover{transform:translateY(-2px)}
+.c-arrow{position:absolute;right:22px;bottom:20px;font-size:24px}
+@media (max-width:900px){.contact .c-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.contact .c-grid{grid-template-columns:1fr}}
+.book-points{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:12px;font-size:15px;color:#3a3530}
+.book-points li{padding-left:16px;border-left:2px solid #c99a45}
+.book-points a{color:#8a5f1c;text-decoration:none;font-weight:600}
+
+/* whatsApp booking */
+.send-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 10px}
+.btn.wa{background:#1f8f4e;color:#fff;box-shadow:0 6px 18px -8px rgba(31,143,78,.7)}
+.btn.wa:hover{background:#1a7a43;color:#fff}
+.btn.wa span{font-size:10px;color:#9ff0bf}
+#thanks small{display:block;color:#5c5650;font-size:13px;margin-bottom:10px}
+.msg-copy{width:100%;font-size:13px;line-height:1.5;color:#1c1c1f;background:#fbf9f5;border:1px solid rgba(28,28,31,.2);padding:10px;resize:vertical}
+.copy-btn{margin-top:8px;font:inherit;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:9px 14px;border:1px solid #1c1c1f;background:transparent;color:#1c1c1f;cursor:pointer}
+.wa-float{position:fixed;z-index:30;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:8px;padding:12px 18px 12px 14px;border-radius:999px;background:var(--gold-grad);color:#1c1416;text-decoration:none;font-weight:700;font-size:13px;letter-spacing:.06em;box-shadow:0 10px 30px -8px rgba(0,0,0,.6),0 0 0 1px rgba(243,221,159,.5);transition:transform .25s}
+.wa-float:hover{transform:translateY(-2px)}
+.wa-float svg{width:22px;height:22px;fill:#1c1416}
+@media (max-width:520px){.wa-float{padding:13px}.wa-float span{display:none}}
+
+/* leave a review */
+.rv-write{margin-top:16px;display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;padding:36px;border:1px solid rgba(212,173,90,.45);background:linear-gradient(135deg,rgba(212,173,90,.1),rgba(255,255,255,.02) 70%)}
+.rv-write h3{font-size:clamp(28px,3vw,38px);margin:10px 0 12px}
+.rv-write-head p{color:var(--muted);margin:0;max-width:40ch}
+#reviewForm label,#reviewForm legend{color:var(--muted)}
+#reviewForm input:not([type=radio]):not([type=checkbox]),#reviewForm select,#reviewForm textarea{color:var(--ink);background:rgba(0,0,0,.25);border:1px solid var(--line)}
+#reviewForm input:focus,#reviewForm select:focus,#reviewForm textarea:focus{border-color:var(--gold)}
+#reviewForm input::placeholder,#reviewForm textarea::placeholder{color:#7d786f}
+#reviewForm select option{color:#141414}
+.rating-in{border:0;padding:0;margin:0}
+.rating-in legend{font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:0;margin-bottom:6px}
+.star-pick{display:inline-flex;flex-direction:row-reverse;gap:4px}
+.star-pick input{position:absolute;opacity:0;width:1px;height:1px}
+.star-pick label{font-size:34px;line-height:1;color:var(--line);cursor:pointer;letter-spacing:0;text-transform:none;transition:color .15s,transform .15s}
+.star-pick label:hover,.star-pick label:hover ~ label,.star-pick input:checked ~ label{color:#e2c27a}
+.star-pick label:hover{transform:scale(1.12)}
+.star-pick input:focus-visible + label{outline:2px solid var(--gold);outline-offset:2px}
+#reviewForm .check{display:flex;align-items:flex-start;gap:10px;text-transform:none;letter-spacing:0;font-size:14px}
+#reviewForm .check input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:#c99a45}
+#reviewForm .btn{justify-self:start}
+#r-thanks{padding:14px;border:1px solid var(--line);color:var(--ink);font-size:14px;background:rgba(0,0,0,.2)}
+#r-thanks.ok{border-color:rgba(212,173,90,.6)}
+.demo-note a{color:var(--accent);font-weight:600}
+@media (max-width:860px){.rv-write{grid-template-columns:1fr;gap:20px;padding:24px 20px}}
+@media (max-width:520px){#reviewForm .btn{justify-self:stretch}}
+
+/* payment box */
+.pay-box{margin-top:28px;padding:20px 22px;background:#fff;border:1px solid rgba(184,134,47,.45)}
+.pay-box > b{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8a5f1c;margin-bottom:10px}
+.pay-box ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pay-box li{display:grid;grid-template-columns:96px 1fr;gap:12px;font-size:14px;color:#3a3530}
+.pay-box li span{font-weight:700;color:#1c1c1f}
+@media (max-width:420px){.pay-box li{grid-template-columns:1fr;gap:0}}
+
+.square-cta{margin-top:26px}
+.square-note{margin:10px 0 0;font-size:13px;color:#5c5650;max-width:42ch}
+
+/* star picker fix: beat the #reviewForm label colour; show the picked rating */
+#reviewForm .star-pick label{color:#4a4a52;font-size:38px;padding:2px 3px}
+#reviewForm .star-pick input:checked ~ label{color:#e2c27a}
+@media (hover:hover){#reviewForm .star-pick label:hover,#reviewForm .star-pick label:hover ~ label{color:#e2c27a}}
+#reviewForm .star-pick label{-webkit-tap-highlight-color:transparent}
+.r-after{margin:14px 0 10px;font-size:13px;color:var(--muted)}
+.r-preview{margin:0;background:rgba(255,255,255,.04);border:1px dashed rgba(212,173,90,.55)}
+</style>
+</head>
+<body>
+
+<canvas id="sparkle" aria-hidden="true"></canvas>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top"><img src="photos/logo.jpg" alt=""><span class="lt"><b>Dr. Moe</b><span>Medical Esthetics</span></span></a>
+    <nav class="links" id="mainNav" aria-label="Main">
+      <a href="#services">Treatments</a>
+      <a href="#process">Your Visit</a>
+      <a href="#about">Our Story</a>
+      <a href="#reviews-section">Reviews</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a class="btn" href="#book">Book Now</a>
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav"><i></i><i></i><i></i></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Facials · Skin Treatments · For Men &amp; Women</div>
+        <h1>Healthy skin, <em>done properly.</em></h1>
+        <p class="lede">Professional facials and corrective skin treatments by Dr. Moe. Every visit starts with a skin analysis, so your treatment is built for your skin and not pulled from a menu.</p>
+        <div class="ctas">
+          <a class="btn" href="#book">Book a Facial</a>
+          <a class="btn ghost" href="#services">View Treatments</a>
+        </div>
+      </div>
+      <div class="glow" aria-hidden="true">
+        <img class="sk tired" src="photos/hero-bare-skin.jpg" alt="">
+        <div class="freshwrap"><img class="sk fresh" src="photos/hero-bare-skin.jpg" alt=""><i class="flush"></i></div>
+        <i class="beam"></i>
+        <span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span>
+        <span class="chip c1">Hydration restored</span><span class="chip c2">Even, clear tone</span><span class="chip c3">Natural glow</span>
+        <span class="state"><b class="s1">Tired skin</b><b class="s2">Fresh, glowing skin</b></span>
+        <div class="tag"><div><b>Signature Facial</b>From tired skin to fresh, clean glow</div><div style="text-align:right"><b>75</b>min</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap">
+      <h2>We focus on one thing: your skin.</h2>
+      <div>
+        <p>Dr. Moe's studio is dedicated to skin care for men and women. No injectables, no fillers, no Botox. Just results-focused facials, peels and skin treatments that improve texture, clarity and hydration over time.</p>
+        <div class="no"><span>Acne &amp; congestion</span><span>Dullness</span><span>Dehydration</span><span>Pigmentation</span><span>Fine lines</span><span>Sensitivity</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="head">
+        <div><div class="eyebrow">Treatment Menu</div><h2>Facials &amp; skin services</h2></div>
+        <p>Not sure which to choose? Book the Signature Facial and Dr. Moe will recommend a plan after your skin analysis.</p>
+      </div>
+      <div class="filters" role="group" aria-label="Filter treatments">
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="facial" aria-pressed="false">Facials</button>
+        <button type="button" data-f="corrective" aria-pressed="false">Corrective</button>
+        <button type="button" data-f="addon" aria-pressed="false">Add-ons</button>
+      </div>
+      <div class="menu" id="menu"></div>
+      <p class="note">Tap any photo for a closer look. The Acne Treatment photo is a real client result from @dr.moe_esthetics; other before-and-after views are illustrations. Prices are in CAD and are sample prices until confirmed by the studio.</p>
+    </div>
+  </section>
+
+  <section class="block process" id="process">
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Your Visit</div><h2>What to expect</h2></div></div>
+      <div class="steps">
+        <div class="step"><h3>Consultation</h3><p>We talk through your skin concerns, routine and goals before anything touches your face.</p></div>
+        <div class="step"><h3>Skin analysis</h3><p>A close look at hydration, oil, texture and sensitivity under a magnifying lamp.</p></div>
+        <div class="step"><h3>Treatment</h3><p>Your facial or treatment, adjusted in the moment to how your skin responds.</p></div>
+        <div class="step"><h3>Home care plan</h3><p>Clear aftercare and a simple routine so the results last between visits.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block about" id="about">
+    <div class="wrap">
+      <div class="story-intro">
+        <div class="eyebrow">Our Story</div>
+        <h2>A doctor's understanding of skin, in a calm and private studio.</h2>
+        <p>Dr. Moe founded the studio with one idea: skin care should be guided by real medical knowledge, not trends. Every facial and treatment is planned around how your skin actually works.</p>
+      </div>
+
+      <div class="member">
+        <div class="portrait photo"><img src="photos/dr-mohammed.jpg" alt="Dr. Moe in blue scrubs, smiling with arms crossed"></div>
+        <div>
+          <div class="role">Founder &amp; Owner</div>
+          <h3 class="name">Dr. Moe</h3>
+          <ul class="creds">
+            <li>Doctor of Medicine (MD)</li>
+            <li>Advanced Medical Esthetics, 4.0 GPA</li>
+            <li>5+ years in skin care</li>
+            <li>Arabic · English · Turkish</li>
+          </ul>
+          <p>Dr. Moe earned his Doctor of Medicine from Georgian American University School of Medicine and has worked in Canadian healthcare as a Physician Assistant, including in walk-in and family practice. He then focused his career on skin health, completing the Advanced Medical Esthetics Practitioner program at St. Clair College in Windsor with a perfect 4.0 GPA and a Certificate of Academic Distinction.</p>
+          <p>He sees the skin as an organ, not just a surface. It protects the body, regulates temperature and reflects overall health, so stress, sleep and hormones all play a part. His approach combines medical knowledge, education and realistic expectations: gentle care that protects the skin barrier, no unnecessary treatments, and results that last.</p>
+          <dl class="training">
+            <div><dt>Medicine</dt><dd>Doctor of Medicine, Georgian American University School of Medicine</dd></div>
+            <div><dt>Esthetics</dt><dd>Advanced Medical Esthetics Practitioner, St. Clair College, Windsor · Certificate of Academic Distinction, 2026</dd></div>
+            <div><dt>Chemical peels</dt><dd>BioRePeelCl3 Level 1 Certification, BIOSKIN Aesthetics</dd></div>
+            <div><dt>Clinical</dt><dd>Former Physician Assistant, walk-in &amp; family practice, Canada</dd></div>
+            <div><dt>Languages</dt><dd>Arabic, English and Turkish (Yunus Emre Institute certificate)</dd></div>
+          </dl>
+          <div class="member-cta">
+            <a class="btn" href="#book">Book with Dr. Moe</a>
+            <a class="ig" href="https://www.instagram.com/dr.moe_esthetics/" target="_blank" rel="noopener">@dr.moe_esthetics</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="member flip">
+        <div class="portrait photo"><img src="photos/team.jpg" alt="Dr. Moe with two female colleagues in a treatment room"></div>
+        <div>
+          <div class="role">Available on request</div>
+          <h3 class="name">Female Esthetician</h3>
+          <p>For clients who prefer to be treated by a woman, a female member of our team is available on request. She follows the same treatment plans and standards set by Dr. Moe, so you get the same care and results.</p>
+          <p>Just choose "Female esthetician" when you book, or mention it when you call.</p>
+          <div class="member-cta">
+            <a class="btn ghost" href="#book">Request a Female Esthetician</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block process" id="reviews-section">
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Client Reviews</div><h2>What clients say</h2></div>
+        <div class="rating"><b>4.8</b><span class="stars" aria-hidden="true">★★★★★</span><small>Sample rating · preview only</small></div></div>
+      <div class="quotes">
+        <blockquote class="featured">
+          <div class="rv-head"><span class="av">C</span><div><b>Client</b><small>Dermaplaning, Microneedling &amp; Facial</small></div><div class="stars" aria-label="5 out of 5 stars">★★★★★</div></div>
+          <p>I had dermaplaning, microneedling and a facial with Dr. Moe, and every treatment was amazing. He was professional, gentle and explained each step. My skin looks smoother, brighter and more even than it has in years. The results are stunning, and I can't recommend him enough.</p>
+        </blockquote>
+        <p class="demo-note"><b>Demo content:</b> the reviews below are sample reviews for preview. They will be replaced with verified client reviews before launch. <a href="#write-review">Leave your own review</a></p>
+        <div id="reviews" class="rv-grid"></div>
+        <div class="rv-write" id="write-review">
+          <div class="rv-write-head">
+            <div class="eyebrow">Share your experience</div>
+            <h3>Leave a review</h3>
+            <p>Had a treatment with Dr. Moe? We'd love to hear how it went. Your review is sent to the studio on WhatsApp, and once it's checked it's added to this page.</p>
+          </div>
+          <form id="reviewForm" novalidate>
+            <label><span>Your name <span class="req">*</span></span><input id="r-name" autocomplete="name" placeholder="e.g. Sarah M."></label>
+            <label>Treatment<select id="r-treat"></select></label>
+            <fieldset class="full rating-in">
+              <legend>Your rating <span class="req">*</span></legend>
+              <div class="star-pick" role="radiogroup" aria-label="Rating">
+                <input type="radio" name="r-stars" id="rs5" value="5"><label for="rs5" title="5 stars">★</label>
+                <input type="radio" name="r-stars" id="rs4" value="4"><label for="rs4" title="4 stars">★</label>
+                <input type="radio" name="r-stars" id="rs3" value="3"><label for="rs3" title="3 stars">★</label>
+                <input type="radio" name="r-stars" id="rs2" value="2"><label for="rs2" title="2 stars">★</label>
+                <input type="radio" name="r-stars" id="rs1" value="1"><label for="rs1" title="1 star">★</label>
+              </div>
+            </fieldset>
+            <label class="full"><span>Your review <span class="req">*</span></span><textarea id="r-text" rows="4" placeholder="What did you have done, and how did your skin feel afterward?"></textarea></label>
+            <label class="full check"><input type="checkbox" id="r-ok"> I agree that my first name and review may be shown on this website.</label>
+            <button class="btn" type="submit">Continue to send review</button>
+            <div id="r-thanks" class="full" hidden></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="wrap faq">
+      <div class="eyebrow">FAQ</div>
+      <h2 style="font-size:clamp(34px,4.4vw,54px);margin:12px 0 28px">Good to know</h2>
+      <details><summary>Do you treat men?</summary><p>Yes. Our facials and skin treatments are for men and women. Men often come in for deep cleansing, acne and ingrown hairs, razor irritation, oily skin and dull, tired-looking skin. Every treatment is adjusted to your skin type.</p></details>
+      <details><summary>Do you offer Botox or fillers?</summary><p>No. The studio focuses only on skin treatments: facials, chemical peels, dermaplaning, microdermabrasion, microneedling, red light therapy and acne care. We do not offer injectables of any kind.</p></details>
+      <details><summary>Which treatment should I book first?</summary><p>Start with the Signature Facial. It includes a full skin analysis, and Dr. Moe will recommend what to do next.</p></details>
+      <details><summary>Is there downtime after a peel?</summary><p>Most light peels have little to no downtime. Some light flaking may happen for a few days. You'll get aftercare instructions at your visit.</p></details>
+      <details><summary>How often should I get a facial?</summary><p>Every 4 to 6 weeks works for most skin, matching your skin's natural renewal cycle. Acne programs may start more often.</p></details>
+      <details><summary>Can I be treated by a female esthetician?</summary><p>Yes. A female member of our team is available on request. Choose it in the booking form or mention it when you call.</p></details>
+      <details><summary>Is Dr. Moe a real doctor?</summary><p>Dr. Moe holds a Doctor of Medicine degree from Georgian American University School of Medicine and is a former Physician Assistant in Canada. He also graduated with distinction from the Advanced Medical Esthetics Practitioner program at St. Clair College and has more than five years of experience in skin care. He owns the studio and leads every new client's consultation.</p></details>
+      <details><summary>What languages do you speak?</summary><p>Dr. Moe speaks Arabic, English and Turkish. Let us know when you book which language you'd like for your consultation.</p></details>
+      <details><summary>Where are you located?</summary><p>We are in Windsor, Ontario, and see clients by appointment only. The full address will be provided once your booking is confirmed.</p></details>
+      <details><summary>What are your hours?</summary><p>Monday to Friday, 7:00 AM to 10:00 PM. Saturday and Sunday appointments are available by reservation. Call (226) 506-3772 to book.</p></details>
+      <details><summary>How can I pay?</summary><p>We accept debit, Visa, Mastercard, Apple Pay and Google Pay, as well as Interac e-Transfer. The balance is paid after your treatment.</p></details>
+      <details><summary>Do I need to pay a deposit?</summary><p>Yes. A $25 deposit secures your appointment. Once we confirm your time on WhatsApp or by text, we'll send you a secure payment link, or you can pay by Interac e-Transfer to Williamalghanim@gmail.com (Autodeposit, no password needed). The deposit is taken off your total on the day.</p></details>
+      <details><summary>Will I get a receipt?</summary><p>Yes. You'll receive a receipt by text or email for your deposit and for your final payment, showing the treatment, date and amount.</p></details>
+      <details><summary>What is your cancellation policy?</summary><p>Please give at least 24 hours' notice to cancel or reschedule. With 24 hours' notice, your deposit can be moved to a new appointment or refunded. Late cancellations and missed appointments forfeit the deposit.</p></details>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <div class="head"><div><div class="eyebrow">Contact Us</div><h2>Visit, call or message</h2></div>
+        <p>We're happy to answer questions before you book. Reach out any way that suits you.</p></div>
+      <div class="c-grid">
+        <div class="c-card c-loc">
+          <span class="c-ic" aria-hidden="true">📍</span>
+          <b>Location</b>
+          <p class="c-big">Windsor, Ontario</p>
+          <p>By appointment only. The full address will be provided once your booking is confirmed.</p>
+        </div>
+        <div class="c-card">
+          <span class="c-ic" aria-hidden="true">🕖</span>
+          <b>Hours</b>
+          <p class="c-big">Open weekdays 7 AM – 10 PM</p>
+          <p>Saturday and Sunday by reservation.</p>
+        </div>
+        <div class="c-card">
+          <span class="c-ic" aria-hidden="true">💬</span>
+          <b>Languages</b>
+          <p class="c-big">Arabic · English · Turkish</p>
+          <p>Tell us your preferred language when you book.</p>
+        </div>
+        <div class="c-card">
+          <span class="c-ic" aria-hidden="true">📞</span>
+          <b>Phone, WhatsApp &amp; Email</b>
+          <p class="c-big"><a href="tel:+12265063772">(226) 506-3772</a></p>
+          <p><a href="https://wa.me/12265063772" target="_blank" rel="noopener">Message us on WhatsApp</a> · call or text</p>
+          <p><a href="mailto:Williamalghanim@gmail.com">Williamalghanim@gmail.com</a></p>
+        </div>
+        <div class="c-card">
+          <span class="c-ic" aria-hidden="true">✦</span>
+          <b>Instagram</b>
+          <p class="c-big"><a href="https://www.instagram.com/dr.moe_esthetics/" target="_blank" rel="noopener">@dr.moe_esthetics</a></p>
+          <p>Skin tips, treatments and updates.</p>
+        </div>
+        <a class="c-card c-cta" href="#book">
+          <b>Ready to book?</b>
+          <p class="c-big">Request an appointment</p>
+          <span class="c-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="book" id="book">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Book an Appointment</div>
+        <h2>Ready for better skin?</h2>
+        <p class="muted">Fill in the form, then send it to us on WhatsApp or by text. We'll reply to confirm your appointment time.</p>
+        <a class="btn square-cta" id="squareCta" href="#" target="_blank" rel="noopener" hidden>See available times &amp; book online</a>
+        <p class="square-note" id="squareNote" hidden>Pick a free time in our live calendar. Booked times are hidden, so you'll always get a real opening.</p>
+        <div class="pay-box">
+          <b>Payment &amp; deposit</b>
+          <ul>
+            <li><span>Deposit</span>$25 to secure your time, taken off your total</li>
+            <li><span>On the day</span>Debit, credit, Apple Pay, Google Pay or e-Transfer</li>
+            <li><span>e-Transfer</span>Williamalghanim@gmail.com · Autodeposit, no password needed</li>
+            <li><span>Receipts</span>Sent by text or email</li>
+            <li><span>Cancel</span>24 hours' notice to move or refund your deposit</li>
+          </ul>
+        </div>
+        <ul class="book-points">
+          <li>📍 Windsor, Ontario · by appointment only</li>
+          <li>Full address shared once your booking is confirmed</li>
+          <li>Prefer to chat? <a href="https://wa.me/12265063772" target="_blank" rel="noopener">WhatsApp us</a> or call <a href="tel:+12265063772">(226) 506-3772</a></li>
+        </ul>
+      </div>
+      <form id="bookForm" novalidate>
+        <label><span>Full name <span class="req">*</span></span><input id="f-name" name="name" required autocomplete="name" placeholder="Your name"></label>
+        <label><span>Phone <span class="req">*</span></span><input id="f-phone" name="phone" type="tel" required autocomplete="tel" placeholder="(000) 000-0000"></label>
+        <label class="full">Email (optional)<input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>
+        <label class="full">Treatment<select id="f-treat" name="treatment"></select></label>
+        <label class="full">Treated by<select id="f-staff" name="staff"><option>Dr. Moe</option><option>Female esthetician (on request)</option><option>No preference</option></select></label>
+        <label>Preferred date<input id="f-date" name="date" type="date"></label>
+        <label>Preferred time<select id="f-time" name="time"><option>Early morning (7–10 AM)</option><option>Morning (10 AM–12 PM)</option><option>Afternoon (12–5 PM)</option><option>Evening (5–10 PM)</option><option>Weekend (by reservation)</option></select></label>
+        <label class="full">Skin concerns (optional)<textarea id="f-notes" name="notes" rows="3" placeholder="For example: breakouts on my chin, dry patches, first facial"></textarea></label>
+        <p class="form-hint full"><span class="req">*</span> Required. Next, you'll send your request to Dr. Moe on WhatsApp or by text. We'll reply to confirm your time and send a link for the $25 deposit.</p>
+        <button class="btn" type="submit">Continue to send request</button>
+        <div id="thanks" hidden></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-grid">
+    <div class="foot-brand"><img src="photos/logo.jpg" alt=""><div><b>Dr. Moe</b><span>Medical Esthetics</span></div></div>
+    <nav class="foot-links" aria-label="Footer"><a href="#services">Treatments</a><a href="#about">Our Story</a><a href="#reviews-section">Reviews</a><a href="#faq">FAQ</a><a href="#contact">Contact</a><a href="#book">Book</a></nav>
+    <div class="foot-contact"><span>📍 Windsor, Ontario</span><span>(226) 506-3772</span><span>Williamalghanim@gmail.com</span><a href="https://www.instagram.com/dr.moe_esthetics/" target="_blank" rel="noopener">@dr.moe_esthetics</a></div>
+    <div class="foot-hours"><span>Mon – Fri · 7 AM – 10 PM</span><span>Sat – Sun · By reservation</span></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 Dr. Moe Medical Esthetics. All rights reserved.</span></div>
+</footer>
+
+
+<a class="wa-float" href="https://wa.me/12265063772" target="_blank" rel="noopener" aria-label="Message Dr. Moe on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.4.4 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg><span>WhatsApp</span></a>
+
+<dialog id="viewer" aria-label="Before and after">
+  <button type="button" class="v-close" id="vClose" aria-label="Close">×</button>
+  <div class="v-grid">
+    <div class="v-stage" id="vStage">
+      <img id="vBefore" alt="Before">
+      <img id="vAfter" alt="After">
+      <i class="vline"></i>
+      <input type="range" id="vRange" min="0" max="100" value="100" aria-label="Drag to compare before and after">
+    </div>
+    <div class="v-side">
+      <span class="v-badge" id="vBadge">Treatment preview</span>
+      <h3 id="vTitle">Treatment</h3>
+      <div class="vfix" id="vFix"></div>
+      <div class="vmeta" id="vMeta"></div>
+      <p class="vhint">Drag the gold line across the photo to compare.</p>
+      <p class="vnote" id="vNote"></p>
+      <div class="v-actions">
+        <a class="btn" href="#book" id="vBook">Book this treatment</a>
+        <button type="button" class="btn ghost" id="vReplay">Replay</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* ===== BOOKING LINK =====
+   Paste the Square Appointments link between the quotes, for example:
+   const SQUARE_BOOKING_URL = "https://book.squareup.com/appointments/xxxx/location/xxxx/services";
+   While it is empty, Book buttons go to the WhatsApp booking form instead. */
+const SQUARE_BOOKING_URL = "";
+
+const services=[
+  {n:"Signature Facial",c:"facial",d:"Deep cleanse, gentle exfoliation, extractions, a mask matched to your skin, and a relaxing face and neck massage.",p:120,t:75,f:"Helps with: dullness, clogged pores",img:"photos/signature.jpg"},
+  {n:"Deep Cleansing Facial",c:"facial",d:"For congested or oily skin. Steam, thorough extractions and a clarifying mask to clear pores.",p:110,t:60,f:"Helps with: blackheads, congestion",img:"photos/men-deep-cleansing.jpg"},
+  {n:"Hydrating Glow Facial",c:"facial",d:"Layers of hydration for dry, tired or dull skin. Leaves skin plump and bright.",p:115,t:60,f:"Helps with: dryness, flaking, dull tone",img:"photos/men-hydrating.jpg"},
+  {n:"Express Facial",c:"facial",d:"A quick cleanse, exfoliation and hydration for busy schedules.",p:65,t:30,f:"Helps with: tired, dull skin",img:"photos/men-express.jpg"},
+  {n:"Back Facial",c:"facial",d:"Cleansing, exfoliation and extractions for the back, where breakouts are hard to reach.",p:95,t:45,f:"Helps with: back breakouts",img:"photos/back-facial.jpg"},
+  {n:"Acne Treatment",c:"corrective",d:"Targeted care for active breakouts: purifying exfoliation, extractions, antibacterial mask and LED.",p:130,t:60,f:"Helps with: active acne, inflammation",photo:["photos/acne-before.jpg","photos/acne-after.jpg"]},
+  {n:"Chemical Peel",c:"corrective",d:"Professional-strength peel to improve texture, pigmentation and fine lines. Strength chosen after consultation.",p:140,t:45,f:"Helps with: dark spots, uneven tone",img:"photos/chemical-peel.jpg"},
+  {n:"Microdermabrasion",c:"corrective",d:"Mechanical exfoliation that smooths rough texture and boosts radiance.",p:120,t:45,f:"Helps with: rough texture, dullness",img:"photos/men-microdermabrasion.jpg"},
+  {n:"Microneedling",c:"corrective",d:"Tiny controlled micro-channels trigger the skin's own collagen production to improve texture, acne scars, pores and fine lines. Some redness for a day or two.",p:180,t:60,f:"Helps with: acne scars, large pores, texture",img:"photos/microneedling.jpg"},
+  {n:"Dermaplaning",c:"corrective",d:"Removes dead skin and fine facial hair for a smooth finish and better product absorption.",p:90,t:40,f:"Helps with: peach fuzz, dead skin",img:"photos/dermaplaning.jpg"},
+  {n:"Red Light Therapy",c:"addon",d:"Red LED light helps calm redness and supports the skin's natural repair and collagen. Blue light is available for acne. Add to any facial.",p:40,t:20,f:"Helps with: redness, breakouts",img:"photos/red-light.jpg"},
+  {n:"Eye Treatment",c:"addon",d:"Hydrating under-eye gel patches, gentle lymphatic massage and a cooling serum to brighten and depuff the delicate eye area.",p:30,t:15,f:"Helps with: puffiness, dark circles",img:"photos/eye-patch.jpg"},
+];
+const menu=document.getElementById("menu"),sel=document.getElementById("f-treat");
+const cats={facial:"Facial",corrective:"Corrective",addon:"Add-on"};
+
+function render(f){
+  menu.innerHTML=services.map((s,i)=>({s,i})).filter(o=>f==="all"||o.s.c===f).map(({s,i})=>`
+    <div class="item">
+      <button type="button" class="pic" data-i="${i}" aria-label="See before and after for ${s.n}">
+        <img src="${s.photo?s.photo[0]:s.img}" alt="" loading="lazy">
+      </button>
+      <div class="txt"><h3>${s.n}</h3><div class="cat">${cats[s.c]}${s.photo?" · Real client result":""}</div><p>${s.d}</p><div class="fix">${s.f}</div></div>
+      <div class="meta"><b>$${s.p}</b><small>${s.t} min</small></div></div>`).join("");
+  menu.querySelectorAll(".pic").forEach(b=>b.addEventListener("click",()=>openViewer(+b.dataset.i)));
+}
+
+/* ---- before/after viewer: opens on tap, sweeps slowly, then the client can drag ---- */
+const viewer=document.getElementById("viewer"),stage=document.getElementById("vStage"),vRange=document.getElementById("vRange");
+let vAnim=0;
+function setP(v){stage.style.setProperty("--p",v+"%");vRange.value=v}
+function openViewer(i){
+  const s=services[i],real=!!s.photo;
+  document.getElementById("vBefore").src=real?s.photo[0]:s.img;
+  document.getElementById("vAfter").src=real?s.photo[1]:s.img;
+  stage.classList.toggle("illus",!real);
+  document.getElementById("vTitle").textContent=s.n;
+  document.getElementById("vFix").textContent=s.f;
+  document.getElementById("vMeta").textContent=`$${s.p} · ${s.t} min`;
+  document.getElementById("vNote").textContent=real?"Real client result from @dr.moe_esthetics.":"Illustration of the change this treatment aims for. Not a client result; results vary.";
+  document.getElementById("vBadge").textContent=real?"Real client result":"Treatment preview";
+  document.getElementById("vBook").onclick=()=>{viewer.close();document.getElementById("f-treat").value=`${s.n} · $${s.p}`};
+  try{viewer.showModal()}catch(e){viewer.setAttribute("open","")}
+  stage.classList.remove("zoom");void stage.offsetWidth;stage.classList.add("zoom");
+  sweep();
+}
+function sweep(){
+  cancelAnimationFrame(vAnim);
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){setP(50);return}
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,keys=[[0,100],[4200,0],[5400,0],[7200,50]];let t0;
+  setP(100);
+  const step=ts=>{t0??=ts;const t=ts-t0;let k=keys.findIndex(x=>x[0]>t);if(k<0){setP(50);return}
+    const [ta,va]=keys[k-1],[tb,vb]=keys[k];setP(va+(vb-va)*ease((t-ta)/(tb-ta)));vAnim=requestAnimationFrame(step)};
+  vAnim=requestAnimationFrame(step);
+}
+vRange.addEventListener("input",()=>{cancelAnimationFrame(vAnim);setP(+vRange.value)});
+document.getElementById("vReplay").addEventListener("click",sweep);
+document.getElementById("vClose").addEventListener("click",()=>viewer.close());
+viewer.addEventListener("click",e=>{if(e.target===viewer)viewer.close()});
+viewer.addEventListener("close",()=>cancelAnimationFrame(vAnim));
+render("all");
+
+const reviews=[
+  ["Sarah Mitchell",5,"Such a lovely experience! The staff were super friendly and made me feel comfortable from the moment I walked in. Definitely coming back!"],
+  ["Emily R.",5,"I've been here twice now and honestly love it. The clinic is clean, the atmosphere is relaxing, and everyone is so professional."],
+  ["Jessica",5,"Amazing service! Really happy with my results."],
+  ["Olivia Thompson",5,"It was my first time getting a facial, and I was a little nervous. The aesthetician explained everything and made the whole experience so easy. My skin felt amazing afterward!"],
+  ["Amanda K.",4,"Really nice place and friendly staff. Had to wait about 10 minutes for my appointment, but the treatment itself was great."],
+  ["Rachel",5,"My skin looks so much better already!! Thank you ❤️"],
+  ["Sophia Williams",5,"I've tried a few clinics in the area, but this one really stands out. They actually listen to your concerns instead of trying to sell you extra treatments."],
+  ["Nicole B.",4,"Had a great experience overall. Booking was easy, the staff were welcoming, and the clinic was spotless."],
+  ["Ashley Morgan",5,"Absolutely loved my appointment! Everything was explained clearly, and I never felt rushed. Would highly recommend."],
+  ["Melissa",5,"Great experience from start to finish. Will definitely be back :)"],
+];
+const esc=t=>t.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.getElementById("reviews").innerHTML=reviews.map(([n,s,t])=>`
+  <blockquote><div class="rv-head"><span class="av">${esc(n.split(" ").map(w=>w[0]).join("").slice(0,2))}</span><div><b>${esc(n)}</b><small>Sample review</small></div>
+  <div class="stars" aria-label="${s} out of 5 stars">${"★".repeat(s)}<span class="off">${"★".repeat(5-s)}</span></div></div>
+  <p>${esc(t)}</p></blockquote>`).join("");
+sel.innerHTML="<option>Not sure, help me choose</option>"+services.map(s=>`<option>${s.n} · $${s.p}</option>`).join("");
+try{const t=new Date();document.getElementById("f-date").min=new Date(t-t.getTimezoneOffset()*6e4).toISOString().slice(0,10)}catch(e){}
+document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  render(b.dataset.f);
+}));
+document.getElementById("bookForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const name=document.getElementById("f-name").value.trim(),phone=document.getElementById("f-phone").value.trim();
+  const t=document.getElementById("thanks");t.hidden=false;t.classList.remove("ok");
+  if(!name){t.textContent="Please add your name.";document.getElementById("f-name").focus();return}
+  if(phone.replace(/\D/g,"").length<10){t.textContent="Please add a phone number with at least 10 digits so we can confirm your time.";document.getElementById("f-phone").focus();return}
+  const v=id=>(document.getElementById(id).value||"").trim();
+  const lines=["Hello Dr. Moe, I'd like to book an appointment.","",
+    "Name: "+name,"Phone: "+phone,
+    v("f-email")&&"Email: "+v("f-email"),
+    "Treatment: "+v("f-treat"),"Treated by: "+v("f-staff"),
+    v("f-date")&&"Preferred date: "+v("f-date"),
+    "Preferred time: "+v("f-time"),
+    v("f-notes")&&"Skin concerns: "+v("f-notes")].filter(Boolean);
+  const msg=lines.join("\n"),enc=encodeURIComponent(msg);
+  t.classList.add("ok");
+  t.innerHTML=`<b>Almost done, ${esc(name)}.</b> Your request isn't sent yet. Tap one option below to send it to Dr. Moe:
+    <div class="send-row">
+      <a class="btn wa" href="https://wa.me/12265063772?text=${enc}" target="_blank" rel="noopener"><span aria-hidden="true">●</span> Send on WhatsApp</a>
+      <a class="btn ghost sms" href="sms:+12265063772?&body=${enc}">Send by text message</a>
+    </div>
+    <small>We'll reply to confirm your time. If neither opens, text or call <b>(226) 506-3772</b> and copy your request below.</small>
+    <textarea class="msg-copy" readonly rows="6" aria-label="Your booking request">${esc(msg)}</textarea>
+    <button type="button" class="copy-btn" id="copyMsg">Copy request</button>`;
+  document.getElementById("copyMsg").addEventListener("click",ev=>{
+    const ta=t.querySelector(".msg-copy");
+    navigator.clipboard.writeText(msg).then(()=>{ev.target.textContent="Copied"}).catch(()=>{ta.focus();ta.select();ev.target.textContent="Selected, press copy"});
+  });
+  t.scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+
+
+
+
+/* leave a review: builds a message the client sends to Dr. Moe on WhatsApp */
+(function(){
+  const f=document.getElementById("reviewForm"),out=document.getElementById("r-thanks");
+  document.getElementById("r-treat").innerHTML="<option>Not specified</option>"+services.map(s=>`<option>${s.n}</option>`).join("");
+  f.addEventListener("submit",e=>{
+    e.preventDefault();
+    const name=document.getElementById("r-name").value.trim(),text=document.getElementById("r-text").value.trim();
+    const star=(f.querySelector('input[name="r-stars"]:checked')||{}).value,ok=document.getElementById("r-ok").checked;
+    out.hidden=false;out.classList.remove("ok");
+    if(!name){out.textContent="Please add your name.";return}
+    if(!star){out.textContent="Please choose a star rating.";return}
+    if(text.length<10){out.textContent="Please write a few words about your visit.";return}
+    const msg=["New review for Dr. Moe Medical Esthetics","",
+      "Name: "+name,"Treatment: "+document.getElementById("r-treat").value,
+      "Rating: "+"★".repeat(+star)+" ("+star+"/5)","","Review: "+text,"",
+      ok?"OK to show on the website: Yes":"OK to show on the website: No (private feedback)"].join("\n");
+    const enc=encodeURIComponent(msg);
+    out.classList.add("ok");
+    out.innerHTML=`<b>Thank you, ${esc(name)}!</b> One last step: tap below to send your review to Dr. Moe.
+      <div class="send-row"><a class="btn wa" href="https://wa.me/12265063772?text=${enc}" target="_blank" rel="noopener"><span aria-hidden="true">●</span> Send on WhatsApp</a>
+      <a class="btn ghost sms" href="sms:+12265063772?&body=${enc}">Send by text message</a></div>
+      <p class="r-after">Every review is checked by the studio before it appears on the website, usually within a few days. Here's how yours will look:</p>
+      <blockquote class="r-preview"><div class="rv-head"><span class="av">${esc(name.split(" ").map(w=>w[0]).join("").slice(0,2).toUpperCase())}</span><div><b>${esc(name)}</b><small>Awaiting approval</small></div>
+      <div class="stars" aria-label="${star} out of 5 stars">${"★".repeat(+star)}<span class="off">${"★".repeat(5-star)}</span></div></div><p>${esc(text)}</p></blockquote>`;
+    out.scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
+})();
+
+
+/* switch Book buttons to the live Square calendar once a link is set */
+(function(){
+  const url=(SQUARE_BOOKING_URL||"").trim();
+  if(!/^https:\/\//.test(url))return;
+  document.querySelectorAll('a.btn[href="#book"]').forEach(a=>{a.href=url;a.target="_blank";a.rel="noopener"});
+  const cta=document.getElementById("squareCta");cta.href=url;cta.hidden=false;
+  document.getElementById("squareNote").hidden=false;
+  const ff=document.querySelector(".form-hint");if(ff)ff.insertAdjacentHTML("beforebegin",'<p class="form-hint full" style="font-weight:600">Prefer to message instead? Use the form below to send a request on WhatsApp.</p>');
+})();
+
+/* mobile menu */
+(function(){
+  const hd=document.querySelector("header"),btn=document.getElementById("menuBtn");
+  btn.addEventListener("click",()=>{const o=hd.classList.toggle("open");btn.setAttribute("aria-expanded",o);btn.setAttribute("aria-label",o?"Close menu":"Open menu")});
+  document.querySelectorAll("#mainNav a").forEach(a=>a.addEventListener("click",()=>{hd.classList.remove("open");btn.setAttribute("aria-expanded",false)}));
+})();
+
+/* glitter background: three depth layers drifting slowly upward,
+   flakes turn and catch the light, a few stars flash at a time.
+   Kept sparse and soft so text always stays easy to read. */
+(function(){
+  const c=document.getElementById("sparkle"),x=c.getContext("2d");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const GOLD=["231,201,127","243,221,159","212,173,90"],WHITE="255,255,255";
+  let w,h,d,parts=[],last=0;
+  function make(y){
+    const layer=Math.random();                       // 0 = far, 1 = near
+    const depth=layer<.6?0:layer<.9?1:2;
+    return {x:Math.random()*w,y:y??Math.random()*h,depth,
+      r:[.6,1.3,2.1][depth]*d*(.7+Math.random()*.6),
+      vy:-[4,9,16][depth]*d*(.6+Math.random()*.8),   // px per second, upward
+      sway:Math.random()*6.3,swaySp:.2+Math.random()*.4,swayAmp:[3,7,12][depth]*d,
+      rot:Math.random()*6.3,rotSp:(Math.random()-.5)*1.2,
+      tw:Math.random()*6.3,twSp:.5+Math.random()*1.3,
+      col:Math.random()<.65?GOLD[Math.random()*3|0]:WHITE,
+      flake:depth>0&&Math.random()<.55};
+  }
+  function size(){
+    d=Math.min(devicePixelRatio||1,2);w=c.width=innerWidth*d;h=c.height=innerHeight*d;
+    const n=Math.min(230,Math.round(innerWidth*innerHeight/5500));
+    parts=Array.from({length:n},()=>make());
+  }
+  function draw(t){
+    const dt=Math.min(.05,(t-last)/1000||0);last=t;const k=t/1000;
+    x.clearRect(0,0,w,h);
+    for(const o of parts){
+      if(!reduce){o.y+=o.vy*dt;o.rot+=o.rotSp*dt;if(o.y<-20*d){Object.assign(o,make(h+10*d))}}
+      const px=o.x+Math.sin(k*o.swaySp+o.sway)*o.swayAmp;
+      const tw=reduce?.5:Math.pow((Math.sin(k*o.twSp+o.tw)+1)/2,2.5);
+      const base=[.38,.6,.8][o.depth];
+      const a=base*(.35+.65*tw);
+      x.save();x.translate(px,o.y);
+      if(o.flake){
+        // a tiny diamond flake that flattens as it turns, so it glints
+        const sx=Math.max(.15,Math.abs(Math.cos(o.rot)));x.rotate(o.rot*.3);x.scale(sx,1);
+        x.fillStyle=`rgba(${o.col},${a})`;x.beginPath();
+        x.moveTo(0,-o.r*1.8);x.lineTo(o.r,0);x.lineTo(0,o.r*1.8);x.lineTo(-o.r,0);x.closePath();x.fill();
+      }else{
+        x.fillStyle=`rgba(${o.col},${a})`;x.beginPath();x.arc(0,0,o.r,0,7);x.fill();
+      }
+      x.restore();
+      // only the nearest, brightest pieces flash a soft four-point star
+      if(o.depth===2&&tw>.88){
+        const f=(tw-.88)/.12,L=o.r*7*f;
+        const g=x.createRadialGradient(px,o.y,0,px,o.y,o.r*5);
+        g.addColorStop(0,`rgba(${o.col},${.35*f})`);g.addColorStop(1,`rgba(${o.col},0)`);
+        x.fillStyle=g;x.beginPath();x.arc(px,o.y,o.r*5,0,7);x.fill();
+        x.strokeStyle=`rgba(255,248,230,${.55*f})`;x.lineWidth=.7*d;x.beginPath();
+        x.moveTo(px-L,o.y);x.lineTo(px+L,o.y);x.moveTo(px,o.y-L);x.lineTo(px,o.y+L);x.stroke();
+      }
+    }
+    if(!reduce)requestAnimationFrame(draw);
+  }
+  size();addEventListener("resize",size);requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>

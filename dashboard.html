@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Business Dashboard | Dr. Moe Medical Esthetics</title>
+<link rel="icon" href="photos/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: summary tiles first, then revenue over time, then what sells and who buys, then the full list */
+:root{
+  --bg:#1c1c1f; --panel:#232327; --panel2:#2a2a2f; --line:#3a3a40; --grid:#303036;
+  --ink:#f7f4ee; --muted:#b8b2a8; --faint:#8a857d;
+  --gold:#d4ad5a; --gold-hi:#e7c97f;
+  --gold-grad:linear-gradient(120deg,#9c6d22 0%,#e7c97f 38%,#b8862f 62%,#f3dd9f 100%);
+  --display:"Bodoni Moda","Didot",Georgia,serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(28px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));font-variant-numeric:tabular-nums}
+.shell{max-width:1180px;margin:0 auto;display:grid;gap:18px}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.top img{width:42px;height:42px;border-radius:50%;box-shadow:0 0 0 1px var(--gold)}
+.top b{font-family:var(--display);font-style:italic;font-weight:500;font-size:24px;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.top span{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.top a{margin-left:auto;color:var(--gold-hi);font-weight:600;font-size:13px;text-decoration:none;border:1px solid rgba(201,154,69,.5);padding:9px 14px;white-space:nowrap}
+h1{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(28px,4vw,40px)}
+.sub{margin:4px 0 0;color:var(--muted);font-size:14px}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filters button{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;border-radius:999px}
+.filters button[aria-pressed="true"]{background:var(--gold-grad);border-color:transparent;color:#1c1416}
+.filters .range{margin-left:auto;font-size:13px;color:var(--muted)}
+
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:860px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.tile{background:var(--panel);border:1px solid var(--line);padding:16px 18px;display:grid;gap:4px;min-width:0}
+.tile .k{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.tile .v{font-family:var(--display);font-size:clamp(28px,4vw,38px);line-height:1.1}
+.tile .s{font-size:12px;color:var(--faint)}
+.tile.hero{border-color:rgba(212,173,90,.55);background:linear-gradient(135deg,rgba(212,173,90,.14),var(--panel) 70%)}
+.tile.hero .v{color:var(--gold-hi)}
+
+.card{background:var(--panel);border:1px solid var(--line);padding:18px 18px 16px;min-width:0}
+.card h2{margin:0 0 4px;font-size:16px;font-weight:700}
+.card .cap{margin:0 0 14px;color:var(--faint);font-size:12px}
+.grid2{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+@media (max-width:860px){.grid2{grid-template-columns:1fr}}
+
+/* column chart */
+.cols{position:relative;height:220px;display:flex;align-items:flex-end;gap:2px;padding-left:44px;border-bottom:1px solid var(--line)}
+.cols .gl{position:absolute;left:44px;right:0;border-top:1px solid var(--grid);font-size:11px;color:var(--faint)}
+.cols .gl span{position:absolute;left:-44px;top:-8px;width:40px;text-align:right}
+.col{flex:1;min-width:0;height:100%;display:flex;align-items:flex-end;position:relative;cursor:default}
+.col i{display:block;width:100%;max-width:38px;margin:0 auto;background:var(--gold);border-radius:4px 4px 0 0;min-height:0;transition:background .15s}
+.col:hover i,.col:focus i{background:var(--gold-hi)}
+.xlab{display:flex;gap:2px;padding-left:44px;margin-top:6px;font-size:11px;color:var(--faint)}
+.xlab span{flex:1;min-width:0;text-align:center;overflow:hidden;white-space:nowrap}
+
+/* bar list */
+.bars{display:grid;gap:10px}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center}
+.bar .nm{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .val{font-size:13px;color:var(--muted);text-align:right;white-space:nowrap}
+.bar .track{grid-column:1/-1;height:10px;background:var(--panel2);border-radius:0 4px 4px 0}
+.bar .fill{height:100%;background:var(--gold);border-radius:0 4px 4px 0}
+.empty-mini{color:var(--faint);font-size:13px;margin:6px 0}
+
+/* tables */
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px;border-bottom:1px solid var(--grid);vertical-align:top}
+td.n,th.n{text-align:right;white-space:nowrap}
+td .del{font:inherit;font-size:12px;color:var(--faint);background:none;border:1px solid var(--line);padding:4px 9px;cursor:pointer}
+td .del.sure{color:#ffb4a8;border-color:#a8574a}
+
+.backup{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:0;cursor:pointer;font:inherit;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--gold-grad);color:#1c1416;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn input{display:none}
+.msg{font-size:13px;color:var(--muted);margin:0}
+.warn{border:1px dashed rgba(212,173,90,.55);background:rgba(212,173,90,.06);padding:12px 14px;font-size:13px;color:var(--muted)}
+.warn b{color:var(--gold-hi)}
+
+.emptystate{text-align:center;padding:48px 18px;display:grid;gap:12px;justify-items:center}
+.emptystate h2{margin:0;font-family:var(--display);font-weight:400;font-size:28px}
+.emptystate p{margin:0;color:var(--muted);max-width:46ch}
+.samplebar{background:#3a2f17;border:1px solid var(--gold);color:var(--gold-hi);padding:10px 14px;font-size:13px;font-weight:600;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.samplebar button{margin-left:auto;font:inherit;font-size:12px;font-weight:700;background:none;border:1px solid var(--gold);color:var(--gold-hi);padding:6px 10px;cursor:pointer}
+
+#tip{position:fixed;z-index:50;pointer-events:none;background:#0f0f11;border:1px solid var(--line);padding:8px 10px;font-size:12px;line-height:1.4;color:var(--ink);box-shadow:0 8px 20px rgba(0,0,0,.4);max-width:220px}
+#tip b{display:block;font-size:13px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="top"><img src="photos/logo.jpg" alt=""><div><b>Dr. Moe</b><span>Business dashboard · private</span></div><a href="receipt.html">← Receipt maker</a></div>
+
+  <div>
+    <h1>How the business is doing</h1>
+    <p class="sub">Built automatically from every receipt saved in the receipt maker on this phone.</p>
+  </div>
+
+  <div id="sampleBar" class="samplebar" hidden>Showing sample data so you can see how the dashboard works. Nothing is saved. <button type="button" id="exitSample">Exit sample</button></div>
+
+  <div id="emptyState" class="card emptystate" hidden>
+    <h2>No receipts yet</h2>
+    <p>Each time you tap <b>Save receipt PDF</b> in the receipt maker, that visit is added here automatically: clients, money, and which treatments sell best.</p>
+    <div class="backup"><a class="btn" href="receipt.html">Make the first receipt</a><button type="button" class="btn ghost" id="trySample">See it with sample data</button></div>
+  </div>
+
+  <div id="main" hidden>
+    <div class="filters" role="group" aria-label="Time range">
+      <button type="button" data-r="today">Today</button>
+      <button type="button" data-r="week">This week</button>
+      <button type="button" data-r="month" aria-pressed="true">This month</button>
+      <button type="button" data-r="lastmonth">Last month</button>
+      <button type="button" data-r="year">This year</button>
+      <button type="button" data-r="all">All time</button>
+      <span class="range" id="rangeLabel"></span>
+    </div>
+
+    <div class="tiles" style="margin-top:14px">
+      <div class="tile hero"><span class="k">Money earned</span><span class="v" id="kRev"></span><span class="s" id="kRevS"></span></div>
+      <div class="tile"><span class="k">Clients</span><span class="v" id="kClients"></span><span class="s" id="kClientsS"></span></div>
+      <div class="tile"><span class="k">Visits</span><span class="v" id="kVisits"></span><span class="s" id="kVisitsS"></span></div>
+      <div class="tile"><span class="k">Average per visit</span><span class="v" id="kAvg"></span><span class="s" id="kAvgS"></span></div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h2 id="tTitle">Money earned by day</h2>
+      <p class="cap">Before HST. Hover or tap a bar for the details.</p>
+      <div class="cols" id="cols"></div>
+      <div class="xlab" id="xlab"></div>
+    </div>
+
+    <div class="grid2" style="margin-top:18px">
+      <div class="card">
+        <h2>Treatments</h2>
+        <p class="cap">Money earned per treatment, with how many times it was done.</p>
+        <div class="bars" id="svcBars"></div>
+      </div>
+      <div class="card">
+        <h2>How clients paid</h2>
+        <p class="cap">Final payments on the day.</p>
+        <div class="bars" id="payBars"></div>
+        <h2 style="margin-top:22px">Busiest days</h2>
+        <p class="cap">Visits by day of the week.</p>
+        <div class="bars" id="dowBars"></div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:18px">
+      <div class="card">
+        <h2>Top clients</h2>
+        <p class="cap">Your most loyal clients in this period. A good list for thank-you offers.</p>
+        <div class="tbl"><table><thead><tr><th>Client</th><th class="n">Visits</th><th class="n">Spent</th></tr></thead><tbody id="topClients"></tbody></table></div>
+      </div>
+      <div class="card">
+        <h2>Insights</h2>
+        <p class="cap">Quick notes to help with decisions.</p>
+        <div id="insights" class="bars"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h2>All receipts in this period</h2>
+      <p class="cap" id="listCap"></p>
+      <div class="tbl"><table><thead><tr><th>Date</th><th>No.</th><th>Client</th><th>Treatments</th><th class="n">Total</th><th></th></tr></thead><tbody id="list"></tbody></table></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Backup</h2>
+    <p class="cap">Your records are kept in this phone's browser. Download a backup to Files (iCloud Drive) every week, so nothing is lost if the phone changes or the browser is cleared.</p>
+    <div class="backup">
+      <button type="button" class="btn" id="dlJson">Download backup</button>
+      <button type="button" class="btn ghost" id="dlCsv">Spreadsheet for accountant (CSV)</button>
+      <label class="btn ghost">Restore from backup<input type="file" id="restore" accept=".json,application/json"></label>
+    </div>
+    <p class="msg" id="bMsg" role="status" style="margin-top:10px"></p>
+    <p class="warn" style="margin-top:12px"><b>Tip:</b> add this page and the receipt maker to your Home Screen (Safari → Share → Add to Home Screen). Use the same one every time, since records stay with the browser they were saved in.</p>
+  </div>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const fmt=n=>"$"+Math.round(n).toLocaleString("en-CA");
+const fmt2=n=>"$"+(Math.round(n*100)/100).toLocaleString("en-CA",{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const DOW=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+let sample=null,range="month";
+
+function loadAll(){try{return JSON.parse(localStorage.getItem("drmoe-receipts")||"[]")}catch(e){return []}}
+function saveAll(l){try{localStorage.setItem("drmoe-receipts",JSON.stringify(l));return true}catch(e){return false}}
+const records=()=>sample||loadAll();
+const ymd=d=>{const z=new Date(d-d.getTimezoneOffset()*6e4);return z.toISOString().slice(0,10)};
+const parse=s=>new Date(s+"T12:00:00");
+
+function bounds(r){
+  const t=new Date();t.setHours(12,0,0,0);
+  const s=new Date(t),e=new Date(t);
+  if(r==="today"){}
+  else if(r==="week"){const k=(t.getDay()+6)%7;s.setDate(t.getDate()-k)}
+  else if(r==="month"){s.setDate(1)}
+  else if(r==="lastmonth"){s.setMonth(t.getMonth()-1,1);e.setDate(0)}
+  else if(r==="year"){s.setMonth(0,1)}
+  else{const all=records().map(x=>x.date).sort();return all.length?[parse(all[0]),t]:[t,t]}
+  return [s,e];
+}
+function inRange(list,[s,e]){const a=ymd(s),b=ymd(e);return list.filter(r=>r.date>=a&&r.date<=b)}
+const net=r=>(r.sub||0)-(r.disc||0);
+
+/* tooltip */
+const tip=$("tip");
+function showTip(e,html){tip.innerHTML=html;tip.hidden=false;const x=(e.touches?e.touches[0]:e).clientX,y=(e.touches?e.touches[0]:e).clientY;
+  const w=tip.offsetWidth;tip.style.left=Math.min(innerWidth-w-8,Math.max(8,x-w/2))+"px";tip.style.top=Math.max(8,y-tip.offsetHeight-14)+"px"}
+function hideTip(){tip.hidden=true}
+
+function barList(el,rows,valFmt){
+  if(!rows.length){el.innerHTML='<p class="empty-mini">Nothing in this period yet.</p>';return}
+  const max=Math.max(...rows.map(r=>r.v))||1;
+  el.innerHTML=rows.map(r=>`<div class="bar"><span class="nm">${esc(r.k)}</span><span class="val">${valFmt(r)}</span><div class="track"><div class="fill" style="width:${Math.max(2,r.v/max*100)}%"></div></div></div>`).join("");
+}
+
+function render(){
+  const all=records();
+  $("sampleBar").hidden=!sample;
+  $("emptyState").hidden=all.length>0;$("main").hidden=!all.length;
+  if(!all.length)return;
+  const [s,e]=bounds(range),list=inRange(all,[s,e]).sort((a,b)=>a.date<b.date?-1:1);
+  const opt={day:"numeric",month:"short",year:"numeric"};
+  $("rangeLabel").textContent=ymd(s)===ymd(e)?s.toLocaleDateString("en-CA",opt):`${s.toLocaleDateString("en-CA",opt)} – ${e.toLocaleDateString("en-CA",opt)}`;
+
+  const rev=list.reduce((a,r)=>a+net(r),0),hst=list.reduce((a,r)=>a+(r.hst||0),0);
+  const clients=new Map();list.forEach(r=>{const k=(r.client||"Unnamed").trim().toLowerCase();const c=clients.get(k)||{name:r.client||"Unnamed",n:0,v:0};c.n++;c.v+=net(r);clients.set(k,c)});
+  const days=new Set(list.map(r=>r.date)).size;
+  const allClients=new Map();all.forEach(r=>{const k=(r.client||"").trim().toLowerCase();if(!allClients.has(k)||r.date<allClients.get(k))allClients.set(k,r.date)});
+  const newC=[...clients.keys()].filter(k=>allClients.get(k)>=ymd(s)).length;
+
+  $("kRev").textContent=fmt(rev);$("kRevS").textContent=hst?`+ ${fmt2(hst)} HST collected`:"Before HST";
+  $("kClients").textContent=clients.size;$("kClientsS").textContent=`${newC} new · ${clients.size-newC} returning`;
+  $("kVisits").textContent=list.length;$("kVisitsS").textContent=days?`${(list.length/days).toFixed(1)} per working day`:"—";
+  $("kAvg").textContent=list.length?fmt(rev/list.length):"$0";$("kAvgS").textContent="per visit, before HST";
+
+  /* time chart: by day, or by month when the period is long */
+  const spanDays=Math.round((e-s)/864e5)+1,byMonth=spanDays>62;
+  const buckets=[];
+  if(byMonth){const c=new Date(s.getFullYear(),s.getMonth(),1);while(c<=e){buckets.push({key:c.toISOString().slice(0,7),lab:c.toLocaleDateString("en-CA",{month:"short"}),full:c.toLocaleDateString("en-CA",{month:"long",year:"numeric"}),v:0,n:0});c.setMonth(c.getMonth()+1)}}
+  else{const c=new Date(s);while(c<=e){buckets.push({key:ymd(c),lab:spanDays<=7?DOW[c.getDay()]:String(c.getDate()),full:c.toLocaleDateString("en-CA",{weekday:"long",month:"long",day:"numeric"}),v:0,n:0});c.setDate(c.getDate()+1)}}
+  const idx=new Map(buckets.map((b,i)=>[b.key,i]));
+  list.forEach(r=>{const i=idx.get(byMonth?r.date.slice(0,7):r.date);if(i!=null){buckets[i].v+=net(r);buckets[i].n++}});
+  $("tTitle").textContent=byMonth?"Money earned by month":"Money earned by day";
+  const max=Math.max(...buckets.map(b=>b.v),0);
+  const step=max<=0?100:Math.pow(10,Math.floor(Math.log10(max)))*([1,2,2.5,5,10].find(m=>max/(Math.pow(10,Math.floor(Math.log10(max)))*m)<=4)||10);
+  const top=max<=0?400:Math.ceil(max/step)*step;
+  let grid="";for(let v=step;v<=top+1e-6;v+=step){grid+=`<div class="gl" style="bottom:${v/top*100}%"><span>${fmt(v)}</span></div>`}
+  $("cols").innerHTML=grid+buckets.map((b,i)=>`<div class="col" tabindex="0" data-i="${i}" aria-label="${esc(b.full)}: ${fmt2(b.v)}, ${b.n} visits"><i style="height:${b.v/top*100}%"></i></div>`).join("");
+  const every=Math.ceil(buckets.length/12);
+  $("xlab").innerHTML=buckets.map((b,i)=>`<span>${i%every===0?esc(b.lab):""}</span>`).join("");
+  $("cols").querySelectorAll(".col").forEach(c=>{const b=buckets[+c.dataset.i];const h=`<b>${esc(b.full)}</b>${fmt2(b.v)} · ${b.n} visit${b.n===1?"":"s"}`;
+    c.addEventListener("pointermove",ev=>showTip(ev,h));c.addEventListener("pointerleave",hideTip);
+    c.addEventListener("focus",()=>{const r=c.getBoundingClientRect();showTip({clientX:r.left+r.width/2,clientY:r.top},h)});c.addEventListener("blur",hideTip)});
+
+  /* treatments */
+  const svc=new Map();list.forEach(r=>(r.items||[]).forEach(it=>{const x=svc.get(it.name)||{k:it.name,v:0,n:0};x.v+=it.price;x.n++;svc.set(it.name,x)}));
+  const svcRows=[...svc.values()].sort((a,b)=>b.v-a.v);
+  barList($("svcBars"),svcRows,r=>`${fmt(r.v)} · ${r.n}×`);
+  /* payment */
+  const pay=new Map();list.forEach(r=>{const x=pay.get(r.method)||{k:r.method||"Other",v:0,n:0};x.v+=(r.due||0);x.n++;pay.set(r.method,x)});
+  barList($("payBars"),[...pay.values()].sort((a,b)=>b.v-a.v),r=>`${fmt(r.v)} · ${r.n}×`);
+  /* day of week */
+  const dw=[1,2,3,4,5,6,0].map(d=>({k:DOW[d],v:0}));list.forEach(r=>{dw[(parse(r.date).getDay()+6)%7].v++});
+  barList($("dowBars"),dw.filter(x=>x.v).length?dw:[],r=>`${r.v} visit${r.v===1?"":"s"}`);
+
+  /* top clients */
+  const tc=[...clients.values()].sort((a,b)=>b.v-a.v).slice(0,8);
+  $("topClients").innerHTML=tc.map(c=>`<tr><td>${esc(c.name)}</td><td class="n">${c.n}</td><td class="n">${fmt(c.v)}</td></tr>`).join("")||'<tr><td colspan="3" class="empty-mini">No clients in this period.</td></tr>';
+
+  /* insights */
+  const ins=[];
+  if(svcRows[0])ins.push(["Best seller",`${svcRows[0].k} brought in ${fmt(svcRows[0].v)} (${svcRows[0].n}×).`]);
+  const byCount=[...svc.values()].sort((a,b)=>b.n-a.n)[0];if(byCount&&byCount!==svcRows[0])ins.push(["Most booked",`${byCount.k}, done ${byCount.n} times.`]);
+  const busy=[...dw].sort((a,b)=>b.v-a.v)[0];if(busy&&busy.v)ins.push(["Busiest day",`${busy.k}. Consider extra hours or staff then.`]);
+  const quiet=dw.filter(d=>d.v===0&&["Mon","Tue","Wed","Thu","Fri"].includes(d.k));if(list.length>=5&&quiet.length)ins.push(["Quiet days",`No visits on ${quiet.map(q=>q.k).join(", ")}. A weekday promotion could help.`]);
+  const ret=clients.size-newC;if(clients.size)ins.push(["Returning clients",`${Math.round(ret/clients.size*100)}% came back. Higher is better for steady income.`]);
+  const addon=svcRows.filter(r=>/Red Light|Eye/.test(r.k)).reduce((a,r)=>a+r.n,0);if(list.length>=3)ins.push(["Add-ons",`Added to ${addon} of ${list.length} visits. Offering Red Light or Eye Treatment raises the average visit.`]);
+  $("insights").innerHTML=ins.map(([k,v])=>`<div class="bar"><span class="nm" style="white-space:normal">${esc(k)}</span><span></span><span class="val" style="grid-column:1/-1;text-align:left;white-space:normal">${esc(v)}</span></div>`).join("")||'<p class="empty-mini">Insights appear after a few visits.</p>';
+
+  /* list */
+  $("listCap").textContent=`${list.length} receipt${list.length===1?"":"s"}. Totals include HST if charged.`;
+  $("list").innerHTML=[...list].reverse().map(r=>`<tr><td>${parse(r.date).toLocaleDateString("en-CA",{month:"short",day:"numeric"})}</td><td>${esc(r.num)}</td><td>${esc(r.client||"—")}</td><td>${esc((r.items||[]).map(i=>i.name).join(", "))}</td><td class="n">${fmt2(r.total||0)}</td><td class="n">${sample?"":`<button type="button" class="del" data-num="${esc(r.num)}">Delete</button>`}</td></tr>`).join("")||'<tr><td colspan="6" class="empty-mini">No receipts in this period.</td></tr>';
+  $("list").querySelectorAll(".del").forEach(b=>b.addEventListener("click",()=>{
+    if(!b.classList.contains("sure")){b.classList.add("sure");b.textContent="Tap again to delete";setTimeout(()=>{b.classList.remove("sure");b.textContent="Delete"},3500);return}
+    saveAll(loadAll().filter(r=>r.num!==b.dataset.num));render()}));
+}
+
+document.querySelectorAll(".filters button").forEach(b=>b.addEventListener("click",()=>{range=b.dataset.r;document.querySelectorAll(".filters button").forEach(x=>x.setAttribute("aria-pressed",x===b));hideTip();render()}));
+
+/* sample data, never saved */
+function makeSample(){
+  const S=[["Signature Facial",120],["Deep Cleansing Facial",110],["Hydrating Glow Facial",115],["Express Facial",65],["Acne Treatment",130],["Chemical Peel",140],["Microneedling",180],["Dermaplaning",90]];
+  const names=["Sample Client A","Sample Client B","Sample Client C","Sample Client D","Sample Client E","Sample Client F","Sample Client G","Sample Client H"];
+  const out=[],t=new Date();let n=1;let seed=7;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+  for(let d=75;d>=0;d--){const day=new Date(t);day.setDate(t.getDate()-d);const wd=day.getDay();if(wd===0)continue;
+    const visits=Math.floor(rnd()*(wd===5||wd===6?4:3));
+    for(let v=0;v<visits;v++){const s=S[Math.floor(rnd()*S.length)],items=[{name:s[0],price:s[1]}];if(rnd()<.3)items.push(rnd()<.5?{name:"Red Light Therapy",price:40}:{name:"Eye Treatment",price:30});
+      const sub=items.reduce((a,b)=>a+b.price,0);out.push({num:"SAMPLE-"+(n++),date:ymd(day),client:names[Math.floor(rnd()*names.length)],items,sub,disc:0,hst:0,total:sub,dep:25,due:sub-25,method:["Debit","Credit card","Apple Pay","Interac e-Transfer"][Math.floor(rnd()*4)]})}}
+  return out;
+}
+$("trySample").addEventListener("click",()=>{sample=makeSample();render();scrollTo({top:0,behavior:"smooth"})});
+$("exitSample").addEventListener("click",()=>{sample=null;render()});
+
+/* backup / restore */
+function download(name,blob){const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),60000)}
+$("dlJson").addEventListener("click",()=>{const l=loadAll();if(!l.length){$("bMsg").textContent="There are no receipts to back up yet.";return}
+  download(`DrMoe-receipts-backup_${ymd(new Date())}.json`,new Blob([JSON.stringify(l,null,1)],{type:"application/json"}));$("bMsg").textContent=`Backup of ${l.length} receipts saved to Downloads.`});
+$("dlCsv").addEventListener("click",()=>{const l=loadAll();if(!l.length){$("bMsg").textContent="There are no receipts yet.";return}
+  const q=v=>`"${String(v??"").replace(/"/g,'""')}"`;
+  const rows=[["Date","Receipt","Client","Treatments","Subtotal","Discount","HST","Total","Deposit","Paid on day","Payment method"].join(",")]
+    .concat(l.sort((a,b)=>a.date<b.date?-1:1).map(r=>[r.date,r.num,r.client,(r.items||[]).map(i=>i.name).join(" + "),r.sub,r.disc,(r.hst||0).toFixed(2),(r.total||0).toFixed(2),r.dep,(r.due||0).toFixed(2),r.method].map(q).join(",")));
+  download(`DrMoe-receipts_${ymd(new Date())}.csv`,new Blob([rows.join("\n")],{type:"text/csv"}));$("bMsg").textContent="Spreadsheet saved to Downloads. It opens in Numbers or Excel."});
+$("restore").addEventListener("change",async e=>{const f=e.target.files[0];if(!f)return;
+  try{const inc=JSON.parse(await f.text());if(!Array.isArray(inc))throw 0;const m=new Map(loadAll().map(r=>[r.num,r]));inc.forEach(r=>{if(r&&r.num&&r.date)m.set(r.num,r)});
+    saveAll([...m.values()]);sample=null;$("bMsg").textContent=`Restored. You now have ${m.size} receipts.`;render()}
+  catch(_){$("bMsg").textContent="That file isn't a Dr. Moe backup. Pick the .json file from Download backup."}
+  e.target.value=""});
+addEventListener("scroll",hideTip,{passive:true});
+render();
+</script>
+</body>
+</html>

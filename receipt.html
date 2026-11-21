@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Receipt Maker | Dr. Moe Medical Esthetics</title>
+<link rel="icon" href="photos/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Two panes: a dark form on the left, a white gold-trimmed receipt on the right (stacks on phones) */
+:root{
+  --bg:#1c1c1f; --panel:#232327; --line:#3a3a40; --ink:#f7f4ee; --muted:#b8b2a8;
+  --gold:#c99a45; --gold-dk:#8a5f1c; --paper:#ffffff; --paper-ink:#1c1c1f; --paper-muted:#6b655d;
+  --gold-grad:linear-gradient(120deg,#9c6d22 0%,#e7c97f 38%,#b8862f 62%,#f3dd9f 100%);
+  --display:"Bodoni Moda","Didot",Georgia,serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.top{max-width:1180px;margin:0 auto 20px;display:flex;align-items:center;gap:12px}
+.top img{width:42px;height:42px;border-radius:50%;box-shadow:0 0 0 1px var(--gold)}
+.top b{font-family:var(--display);font-style:italic;font-weight:500;font-size:24px;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.top span{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.top-link{margin-left:auto;color:#e2c27a;font-weight:600;font-size:13px;text-decoration:none;border:1px solid rgba(201,154,69,.5);padding:9px 14px;white-space:nowrap}
+.wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:24px;align-items:start}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}}
+.form{background:var(--panel);border:1px solid var(--line);padding:22px;display:grid;gap:14px}
+.form h2{margin:0;font-family:var(--display);font-weight:400;font-size:26px}
+.form .hint{margin:0;color:var(--muted);font-size:13px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:480px){.row{grid-template-columns:1fr}}
+label{display:grid;gap:5px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+input,select,textarea{font:inherit;font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink);background:rgba(0,0,0,.28);border:1px solid var(--line);padding:11px 12px;width:100%;border-radius:0}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold)}
+select option{color:#141414}
+.items{display:grid;gap:10px}
+.item-row{display:grid;grid-template-columns:minmax(0,1fr) 110px 40px;gap:8px;align-items:end}
+.icon-btn{height:44px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;font-size:18px}
+.icon-btn:hover{color:var(--ink);border-color:var(--gold)}
+.link-btn{justify-self:start;background:none;border:0;color:#e2c27a;font:inherit;font-weight:600;cursor:pointer;padding:4px 0}
+.check{display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font-size:14px;color:var(--ink);font-weight:500}
+.check input{width:18px;height:18px;accent-color:var(--gold)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border:0;cursor:pointer;font:inherit;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;background:var(--gold-grad);color:#1c1416}
+.btn.wa{background:#1f8f4e;color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.note{font-size:12px;color:var(--muted);margin:0}
+.steps{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+.step-box{display:grid;gap:8px;align-content:start;padding:16px;border:1px solid var(--line);background:rgba(0,0,0,.2)}
+.step-box.ok{border-color:#1f8f4e}
+.step-n{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#e2c27a;font-weight:700}
+.step-box b{font-size:16px}
+.step-box p{margin:0;font-size:13px;color:var(--muted)}
+.done{font-size:13px;color:#7fe0a5;font-weight:600;overflow-wrap:anywhere}
+.btn[disabled]{opacity:.55;cursor:wait}
+
+/* the receipt */
+.paper{background:var(--paper);color:var(--paper-ink);padding:34px 32px;border-top:6px solid transparent;border-image:var(--gold-grad) 1;box-shadow:0 30px 60px -30px rgba(0,0,0,.7);font-variant-numeric:tabular-nums}
+.r-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid #eadfcb}
+.r-brand{display:flex;gap:12px;align-items:center}
+.r-brand img{width:56px;height:56px;border-radius:50%}
+.r-brand b{display:block;font-family:var(--display);font-style:italic;font-weight:500;font-size:26px;color:#9c6d22;line-height:1}
+.r-brand small{display:block;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--paper-muted);margin-top:5px}
+.r-contact{font-size:12px;color:var(--paper-muted);text-align:right;line-height:1.6}
+.r-title{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin:20px 0 6px}
+.r-title h1{margin:0;font-family:var(--display);font-weight:400;font-size:30px;letter-spacing:.06em;text-transform:uppercase}
+.r-title span{font-size:13px;color:var(--paper-muted)}
+.r-meta{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;font-size:13px;margin:14px 0 20px}
+.r-meta dt{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-muted);font-weight:700}
+.r-meta dd{margin:0 0 8px;font-weight:600;min-width:0;overflow-wrap:anywhere}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-muted);text-align:left;padding:8px 0;border-bottom:1px solid #1c1c1f}
+th:last-child,td:last-child{text-align:right}
+td{padding:11px 0;border-bottom:1px solid #eee6d8}
+.totals{margin-left:auto;width:min(100%,300px);margin-top:14px;font-size:14px}
+.totals div{display:flex;justify-content:space-between;padding:5px 0}
+.totals .grand{border-top:2px solid #1c1c1f;margin-top:6px;padding-top:10px;font-size:18px;font-weight:800}
+.totals .paid{color:#1f6b3e;font-weight:700}
+.r-foot{margin-top:26px;padding-top:16px;border-top:1px solid #eadfcb;font-size:12px;color:var(--paper-muted);display:grid;gap:4px}
+.r-foot b{color:#9c6d22;font-family:var(--display);font-style:italic;font-size:17px;font-weight:500}
+.stamp{display:inline-block;margin-top:8px;padding:5px 12px;border:2px solid #1f6b3e;color:#1f6b3e;font-weight:800;letter-spacing:.2em;font-size:12px;transform:rotate(-3deg)}
+
+@media print{
+  @page{margin:12mm}
+  body{background:#fff;padding:0}
+  .top,.form{display:none!important}
+  .wrap{display:block}
+  .paper{box-shadow:none;padding:0;border:0}
+}
+</style>
+</head>
+<body>
+<div class="top"><img src="photos/logo.jpg" alt=""><div><b>Dr. Moe</b><span>Receipt maker · private</span></div><a class="top-link" href="dashboard.html">Business dashboard →</a></div>
+
+<div class="wrap">
+  <form class="form" id="f" autocomplete="off">
+    <h2>New receipt</h2>
+    <p class="hint">Fill this in after the appointment. The receipt on the right updates as you type.</p>
+
+    <div class="row">
+      <label>Receipt number<input id="num"></label>
+      <label>Date<input id="date" type="date"></label>
+    </div>
+    <label>Client name<input id="client" placeholder="e.g. Sarah Mitchell"></label>
+    <div class="row">
+      <label>Client phone (optional)<input id="cphone" type="tel" placeholder="For sending on WhatsApp"></label>
+      <label>Client email (optional)<input id="cemail" type="email"></label>
+    </div>
+
+    <div class="items" id="items"></div>
+    <button type="button" class="link-btn" id="addItem">+ Add another treatment</button>
+
+    <div class="row">
+      <label>Deposit already paid ($)<input id="deposit" type="number" min="0" step="0.01" value="25"></label>
+      <label>Discount ($)<input id="discount" type="number" min="0" step="0.01" value="0"></label>
+    </div>
+    <div class="row">
+      <label>Paid today by<select id="method">
+        <option>Debit</option><option>Credit card</option><option>Apple Pay</option><option>Google Pay</option><option>Interac e-Transfer</option>
+      </select></label>
+      <label>Deposit paid by<select id="depMethod">
+        <option>Interac e-Transfer</option><option>Payment link</option><option>Debit</option><option>Credit card</option>
+      </select></label>
+    </div>
+
+    <label class="check"><input type="checkbox" id="hst"> Add HST (13%) <small style="color:var(--muted)">only once registered for HST</small></label>
+    <label id="hstNumWrap" hidden>HST registration number (typed once, then remembered)<input id="hstNum" placeholder="123456789 RT0001"></label>
+    <label>Note on receipt (optional)<textarea id="note" rows="2" placeholder="e.g. Next visit recommended in 4 weeks"></textarea></label>
+
+    <div class="steps">
+      <div class="step-box" id="s1">
+        <span class="step-n">Step 1</span>
+        <b>Save your copy</b>
+        <p>Saves the PDF on your phone in <b>Files → Downloads</b> (iCloud Drive), and a copy in your secure online records.</p>
+        <button type="button" class="btn" id="savePdf">Save receipt PDF</button>
+        <span class="done" id="s1done" hidden>✓ Saved as <span id="fname"></span></span>
+      </div>
+      <div class="step-box" id="s2">
+        <span class="step-n">Step 2</span>
+        <b>Send to the client</b>
+        <p>Opens your phone's share menu with the PDF attached. Pick WhatsApp, Messages or Mail.</p>
+        <button type="button" class="btn wa" id="sharePdf">Send PDF to client</button>
+        <a class="link-btn" id="wa" href="#" target="_blank" rel="noopener">Or send as a WhatsApp text message</a>
+      </div>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn ghost" id="next">New receipt</button>
+      <button type="button" class="btn ghost" id="print">Print</button>
+    </div>
+    <p class="note" id="status" role="status"></p>
+    <p class="note">This page is private: it isn't linked from the website. Tip: in the Files app, make a folder called "Receipts" and move each PDF there, or keep them in Downloads. iCloud Drive keeps them safe even if you change phones.</p>
+  </form>
+
+  <article class="paper" id="paper" aria-label="Receipt preview">
+    <div class="r-head">
+      <div class="r-brand"><img src="photos/logo.jpg" alt=""><div><b>Dr. Moe</b><small>Medical Esthetics</small></div></div>
+      <div class="r-contact">Windsor, Ontario<br>(226) 506-3772<br>Williamalghanim@gmail.com<br>drmoe.netlify.app</div>
+    </div>
+    <div class="r-title"><h1>Receipt</h1><span id="pNum"></span></div>
+    <dl class="r-meta">
+      <div><dt>Date</dt><dd id="pDate"></dd></div>
+      <div><dt>Client</dt><dd id="pClient"></dd></div>
+      <div><dt>Paid today by</dt><dd id="pMethod"></dd></div>
+      <div id="pHstWrap" hidden><dt>HST no.</dt><dd id="pHstNum"></dd></div>
+    </dl>
+    <table>
+      <thead><tr><th>Treatment</th><th>Amount</th></tr></thead>
+      <tbody id="pItems"></tbody>
+    </table>
+    <div class="totals" id="pTotals"></div>
+    <div class="r-foot">
+      <div id="pNote"></div>
+      <b>Thank you for trusting us with your skin.</b>
+      <span>Dr. Moe Medical Esthetics · Windsor, Ontario</span>
+      <span class="stamp">PAID IN FULL</span>
+    </div>
+  </article>
+</div>
+
+<!-- Online copy of every receipt: Netlify stores these under Forms → "receipts" -->
+<form name="receipts" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"><input name="receipt_number"><input name="date"><input name="client"><input name="client_phone"><input name="client_email">
+  <input name="treatments"><input name="subtotal"><input name="discount"><input name="hst"><input name="total"><input name="deposit"><input name="paid_today">
+  <input name="payment_method"><input name="deposit_method"><input name="note">
+</form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const SERVICES=[
+  ["Signature Facial",120],["Deep Cleansing Facial",110],["Hydrating Glow Facial",115],["Express Facial",65],["Back Facial",95],
+  ["Acne Treatment",130],["Chemical Peel",140],["Microdermabrasion",120],["Microneedling",180],["Dermaplaning",90],
+  ["Red Light Therapy",40],["Eye Treatment",30],["Other (type a price)",0]
+];
+const $=id=>document.getElementById(id);
+const money=n=>"$"+(Math.round(n*100)/100).toFixed(2);
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function load(k){try{return localStorage.getItem(k)}catch(e){return null}}
+
+function addItem(name,price){
+  const row=document.createElement("div");row.className="item-row";
+  row.innerHTML=`<label>Treatment<select class="it-name">${SERVICES.map(([n,p])=>`<option data-p="${p}">${n}</option>`).join("")}</select></label>
+    <label>Price ($)<input class="it-price" type="number" min="0" step="0.01"></label>
+    <button type="button" class="icon-btn" aria-label="Remove treatment">×</button>`;
+  const sel=row.querySelector("select"),pr=row.querySelector("input");
+  if(name)sel.value=name;
+  pr.value=price??sel.selectedOptions[0].dataset.p;
+  sel.addEventListener("change",()=>{const p=sel.selectedOptions[0].dataset.p;if(p!=="0")pr.value=p;render()});
+  pr.addEventListener("input",render);
+  row.querySelector("button").addEventListener("click",()=>{if($("items").children.length>1){row.remove();render()}});
+  $("items").appendChild(row);
+}
+function nextNumber(){const n=(parseInt(load("drmoe-receipt-n")||"1000",10)||1000)+1;return "DM-"+n}
+function today(){const t=new Date();return new Date(t-t.getTimezoneOffset()*6e4).toISOString().slice(0,10)}
+
+function data(){
+  const items=[...document.querySelectorAll(".item-row")].map(r=>({name:r.querySelector("select").value.replace(" (type a price)",""),price:parseFloat(r.querySelector("input").value)||0}));
+  const sub=items.reduce((a,b)=>a+b.price,0),disc=Math.min(parseFloat($("discount").value)||0,sub);
+  const hst=$("hst").checked?(sub-disc)*0.13:0,total=sub-disc+hst,dep=Math.min(parseFloat($("deposit").value)||0,total);
+  return {items,sub,disc,hst,total,dep,due:total-dep};
+}
+function render(){
+  const d=data(),dt=$("date").value?new Date($("date").value+"T12:00:00"):new Date();
+  $("pNum").textContent="No. "+($("num").value||"-");
+  $("pDate").textContent=dt.toLocaleDateString("en-CA",{year:"numeric",month:"long",day:"numeric"});
+  $("pClient").textContent=$("client").value||"-";
+  $("pMethod").textContent=$("method").value;
+  $("pHstWrap").hidden=!($("hst").checked&&$("hstNum").value);$("pHstNum").textContent=$("hstNum").value;
+  $("hstNumWrap").hidden=!$("hst").checked;
+  $("pItems").innerHTML=d.items.map(i=>`<tr><td>${esc(i.name)}</td><td>${money(i.price)}</td></tr>`).join("");
+  $("pTotals").innerHTML=
+    `<div><span>Subtotal</span><span>${money(d.sub)}</span></div>`+
+    (d.disc?`<div><span>Discount</span><span>−${money(d.disc)}</span></div>`:"")+
+    (d.hst?`<div><span>HST (13%)</span><span>${money(d.hst)}</span></div>`:"")+
+    `<div><span>Total</span><span>${money(d.total)}</span></div>`+
+    (d.dep?`<div class="paid"><span>Deposit paid (${esc($("depMethod").value)})</span><span>−${money(d.dep)}</span></div>`:"")+
+    `<div class="grand"><span>Paid today</span><span>${money(d.due)}</span></div>`;
+  $("pNote").textContent=$("note").value;
+  const lines=[`Receipt from Dr. Moe Medical Esthetics`,`No. ${$("num").value} · ${$("pDate").textContent}`,`Client: ${$("client").value||"-"}`,"",
+    ...d.items.map(i=>`${i.name}: ${money(i.price)}`),
+    d.disc?`Discount: -${money(d.disc)}`:"",d.hst?`HST (13%): ${money(d.hst)}`:"",
+    `Total: ${money(d.total)}`,d.dep?`Deposit paid: -${money(d.dep)}`:"",`Paid today (${$("method").value}): ${money(d.due)}`,"",
+    "Thank you for trusting us with your skin! (226) 506-3772"].filter(Boolean);
+  const phone=$("cphone").value.replace(/\D/g,""),to=phone.length===10?"1"+phone:phone;
+  $("wa").href=`https://wa.me/${to}?text=${encodeURIComponent(lines.join("\n"))}`;
+}
+$("num").value=nextNumber();$("date").value=today();
+/* remember HST settings so the number is typed only once */
+function loadHst(){const n=load("drmoe-hst-num");if(n)$("hstNum").value=n;$("hst").checked=load("drmoe-hst-on")==="1"}
+loadHst();
+$("hst").addEventListener("change",()=>store("drmoe-hst-on",$("hst").checked?"1":"0"));
+$("hstNum").addEventListener("input",()=>store("drmoe-hst-num",$("hstNum").value.trim()));
+addItem("Signature Facial");
+document.querySelectorAll("#f input,#f select,#f textarea").forEach(el=>el.addEventListener("input",render));
+$("addItem").addEventListener("click",()=>{addItem();render()});
+/* ---- business log: every saved receipt is recorded for the dashboard ---- */
+function logReceipt(){
+  const d=data(),num=$("num").value||("R-"+Date.now());
+  let list=[];try{list=JSON.parse(localStorage.getItem("drmoe-receipts")||"[]")}catch(e){}
+  const rec={num,date:$("date").value||today(),client:($("client").value||"").trim(),
+    items:d.items,sub:d.sub,disc:d.disc,hst:d.hst,total:d.total,dep:d.dep,due:d.due,
+    method:$("method").value,depMethod:$("depMethod").value,saved:new Date().toISOString()};
+  list=list.filter(r=>r.num!==num);list.push(rec);
+  try{localStorage.setItem("drmoe-receipts",JSON.stringify(list))}catch(e){say("Note: this browser blocked saving the receipt to your business log.")}
+  return rec;
+}
+/* online copy, kept in the Netlify account (Forms → receipts) so it survives a lost phone */
+async function cloudSave(rec){
+  const m=v=>(Math.round((v||0)*100)/100).toFixed(2);
+  const body=new URLSearchParams({"form-name":"receipts","bot-field":"",receipt_number:rec.num,date:rec.date,client:rec.client,
+    client_phone:$("cphone").value,client_email:$("cemail").value,treatments:rec.items.map(i=>`${i.name} $${m(i.price)}`).join(" + "),
+    subtotal:m(rec.sub),discount:m(rec.disc),hst:m(rec.hst),total:m(rec.total),deposit:m(rec.dep),paid_today:m(rec.due),
+    payment_method:rec.method,deposit_method:rec.depMethod,note:$("note").value});
+  try{const r=await fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body});return r.ok}catch(e){return false}
+}
+
+/* ---- PDF: step 1 save a copy, step 2 share it ---- */
+let pdfFile=null;
+const keepNumber=()=>store("drmoe-receipt-n",$("num").value.replace(/\D/g,""));
+function fileName(){
+  const c=($("client").value||"Client").trim().replace(/[^\w\- ]+/g,"").replace(/\s+/g,"-");
+  return `${$("num").value||"Receipt"}_${c}_${$("date").value||today()}.pdf`;
+}
+async function makePdf(){
+  if(!window.html2canvas||!window.jspdf)throw new Error("PDF tools didn't load. Check the internet connection and reload the page.");
+  const canvas=await html2canvas($("paper"),{scale:2,backgroundColor:"#ffffff",useCORS:true});
+  const pdf=new window.jspdf.jsPDF({unit:"pt",format:"letter"});
+  const pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight(),m=36;
+  let w=pw-m*2,h=canvas.height*w/canvas.width;
+  if(h>ph-m*2){h=ph-m*2;w=canvas.width*h/canvas.height}
+  pdf.addImage(canvas.toDataURL("image/jpeg",0.92),"JPEG",(pw-w)/2,m,w,h);
+  pdf.setProperties({title:`Receipt ${$("num").value} - Dr. Moe Medical Esthetics`});
+  return new File([pdf.output("blob")],fileName(),{type:"application/pdf"});
+}
+function say(t){$("status").textContent=t}
+$("savePdf").addEventListener("click",async e=>{
+  const b=e.currentTarget;b.disabled=true;say("Making the PDF…");
+  try{
+    pdfFile=await makePdf();
+    const url=URL.createObjectURL(pdfFile),a=document.createElement("a");
+    a.href=url;a.download=pdfFile.name;document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),60000);
+    keepNumber();const rec=logReceipt();
+    $("fname").textContent=pdfFile.name;$("s1done").hidden=false;$("s1").classList.add("ok");
+    say("PDF saved on this phone. Saving the online copy…");
+    const ok=await cloudSave(rec);
+    say(ok?"✓ Saved on this phone and in your secure online records. Now do Step 2."
+          :"PDF saved on this phone. The online copy didn't go through (no internet?). Tap Save again later to retry.");
+  }catch(err){say(err.message||"Something went wrong making the PDF. Try again.")}
+  b.disabled=false;
+});
+$("sharePdf").addEventListener("click",async e=>{
+  const b=e.currentTarget;b.disabled=true;
+  try{
+    if(!pdfFile||pdfFile.name!==fileName()){say("Do Step 1 first so you keep a copy. Making it now…");pdfFile=await makePdf()}
+    if(navigator.canShare&&navigator.canShare({files:[pdfFile]})){
+      await navigator.share({files:[pdfFile],title:"Your receipt",text:"Your receipt from Dr. Moe Medical Esthetics. Thank you!"});
+      say("Sent. Your copy stays in Files → Downloads.");
+    }else{
+      say("This browser can't attach files. Use the WhatsApp text link below, or attach the saved PDF from Files.");
+    }
+  }catch(err){if(err&&err.name!=="AbortError")say(err.message||"Sharing didn't work. Try the WhatsApp text link.")}
+  b.disabled=false;
+});
+$("print").addEventListener("click",()=>{keepNumber();window.print()});
+$("wa").addEventListener("click",keepNumber);
+$("next").addEventListener("click",()=>{keepNumber();pdfFile=null;$("s1done").hidden=true;$("s1").classList.remove("ok");say("");
+  $("f").reset();loadHst();$("items").innerHTML="";addItem("Signature Facial");$("num").value=nextNumber();$("date").value=today();$("deposit").value=25;$("discount").value=0;render();window.scrollTo({top:0,behavior:"smooth"})});
+render();
+</script>
+</body>
+</html>
