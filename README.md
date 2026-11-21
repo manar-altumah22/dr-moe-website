@@ -45,3 +45,7 @@ npx serve .
 ---
 
 Designed and developed by **Manar Altumah** · [Portfolio](https://manar-altumah.netlify.app) · [LinkedIn](https://www.linkedin.com/in/manar-a-4b776030a)
+
+## License
+
+© 2026 Manar Altumah. **All rights reserved.** This code is shared for portfolio viewing only and may not be copied, reused or sold. See [LICENSE](LICENSE).
